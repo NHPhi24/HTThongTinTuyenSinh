@@ -1,0 +1,51 @@
+:root {
+    --dark-color: #000;
+    --text-color: #333;
+    --white-color: #fff;
+    --prime-color: rgba(51, 161, 225, 0.799);
+    --g-color: #C5E6F8;
+    --div-color: #afafaf;
+    --sign-up-color: #f5a534;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.text-warp {
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    /* fallback */
+
+    /* fallback */
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+}

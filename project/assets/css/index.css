@@ -1,0 +1,192 @@
+@import url(./base.css);
+
+.container {
+    width: 100%
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    height: 50px;
+    background-color: var(--prime-color);
+
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar ul li {
+    justify-content: space-around;
+}
+
+.navbar ul li a {
+    color: var(--white-color);
+
+    text-transform: uppercase;
+    line-height: 50px;
+    margin: 0 30px;
+}
+
+@media screen and (max-width: 400px) {
+    html {
+        font-size: 10px;
+    }
+
+    .navbar ul li a {
+        color: var(--white-color);
+        text-decoration: none;
+        text-transform: uppercase;
+        line-height: 50px;
+    }
+}
+
+/* tin  tuc */
+
+.content {
+    margin-top: 12px;
+    display: flex;
+}
+
+.content-l {
+    width: 80%;
+    padding: 10px;
+}
+
+.content-r {
+    width: 20%;
+    padding: 10px;
+}
+
+.title {
+    background-color: var(--prime-color);
+    padding: 6px;
+    color: var(--white-color);
+    margin-top: 12px;
+}
+
+.carousel {
+    display: flex;
+}
+
+.item-carousel {
+    background-image: url("../img/hdTT_DA.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: calc(100%/3);
+    height: 200px;
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.top-item {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.top-item,
+.bottom-item {
+    background-color: var(--g-color);
+    opacity: 60%;
+}
+
+.bottom-item {
+    padding: 10px;
+    font-weight: 500;
+    max-height: 60px;
+}
+
+.bottom-item:hover {
+    cursor: pointer;
+}
+
+/* thông báo */
+.announce {
+    display: flex;
+}
+
+.announce-l {
+    width: 20%;
+    padding: 12px;
+}
+
+.announce-r {
+    width: 80%;
+    padding: 12px;
+    border-left: 1px solid var(--div-color);
+}
+
+.announce-l img {
+    width: 100%;
+}
+
+.content-announce a {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.item-intro,
+.item-intro table {
+    width: 100%;
+}
+
+table:first-child {
+    margin-top: 10px;
+}
+
+tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+td {
+    display: flex;
+}
+
+.fa-angles-right {
+    color: var(--prime-color);
+}
+
+.item-intro td p {
+    margin-left: 12px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.login>span {
+    margin: 6px 0;
+    padding: 4px 6px;
+    background-color: var(--div-color);
+    color: var(--white-color);
+}
+
+
+
+.btn {
+    margin: 0 6px;
+    padding: 8px 12px;
+    border: none;
+    background-color: var(--sign-up-color);
+    border-radius: 5px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    opacity: 85%;
+    color: var(--white-color);
+
+}
+
+.btn>span {
+    text-transform: uppercase;
+}
+
+.feature ul li {
+    margin: 4px 0;
+}
