@@ -1,0 +1,188 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #8accf1;
+}
+
+.container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    margin-top: 40px;
+    padding-bottom: 15px;
+    border: 5px solid #000000;
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+.formpage {
+    margin: 20px;
+}
+
+form h2 {
+    text-align: center;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+.entryfield {
+    position: relative;
+    height: 45px;
+    width: 350px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.entryfield input {
+    outline: none;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #000;
+    padding-left: 50px;
+    padding-right: 40px;
+    font-size: 20px;
+    color: #030303;
+}
+
+.entryfield .user,
+.entryfield .lock {
+    position: absolute;
+    left: 10px;
+    font-size: 16px;
+    padding: 5px;
+    color: #000000;
+}
+
+.entryfield .eye {
+    position: absolute;
+    right: 10px;
+    font-size: 16px;
+    padding: 5px;
+    color: #717171;
+    cursor: pointer;
+}
+
+.entryfield input[type="text"]:focus,
+.entryfield input[type="password"]:focus {
+    color: #000000;
+    transform: scale(1.05);
+    border: 3px solid #000000;
+    transition: 0.3s ease;
+}
+
+.entryfield input::placeholder {
+    font-size: 16px;
+}
+
+.entryfield input[type="submit"] {
+    color: #fff;
+    background: #21d77c;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.entryfield input[type="submit"]:hover {
+    color: #fff;
+    background: #00b159;
+    transition: 0.3s ease;
+}
+
+.forgetPw span {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    float: right;
+    color: #d41111;
+    font-weight: bold;
+    text-decoration: underline;
+    user-select: none;
+    cursor: pointer;
+}
+
+.forgetPw span:hover {
+    color: #18a2f2;
+    transition: 0.3s ease;
+}
+
+.newAccount {
+    text-align: center;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.newAccount span {
+    text-decoration: none;
+    color: #d41111;
+    font-weight: bold;
+    user-select: none;
+    cursor: pointer;
+}
+
+.newAccount span:hover {
+    color: #18a2f2;
+    transition: 0.3s ease;
+}
+
+.formpage p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+#countdown {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 10px;
+    color: #d41111;
+}
+
+.switch-form {
+    color: #007bff;
+}
+
+.switch-form p:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.backhome {
+    margin-top: auto;
+    text-align: center;
+    font-size: 18px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.backhome:hover {
+    color: #5a5e62;
+    text-decoration: underline;
+}
+
+.backhome span {
+    font-size: 20px;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    padding: 5px;
+}
