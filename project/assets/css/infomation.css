@@ -1,0 +1,52 @@
+@import url(./base.css);
+
+.content-l {
+    display: flex;
+}
+
+.inf-l {
+    flex: 2;
+}
+
+.inf-lr {
+    flex: 1;
+}
+
+.inf-ll,
+.inf-gpa {
+    width: 100%;
+    border: 1px solid var(--div-color);
+    border-radius: 6px;
+    padding: 12px;
+    margin-right: 8px;
+    position: relative;
+}
+
+.inf-1 {
+    display: flex;
+}
+
+.inf-1>label {
+    flex: 1;
+    color: var(--text-color);
+}
+
+.inf-1>p {
+    flex: 3;
+}
+
+.inf-img img {
+    width: 120px;
+    height: 144px;
+}
+
+.inf-img {
+    position: absolute;
+    top: 22%;
+    right: 12px;
+}
+
+/* thông tin bảng điểm  */
+.inf-gpa {
+    margin-top: 20px;
+}

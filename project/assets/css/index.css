@@ -4,6 +4,10 @@
     width: 100%
 }
 
+body {
+    position: relative;
+}
+
 .navbar {
     width: 100%;
     display: flex;
@@ -44,6 +48,7 @@
 /* tin  tuc */
 
 .content {
+    padding-bottom: 100px;
     margin-top: 12px;
     display: flex;
 }
@@ -189,4 +194,23 @@ td {
 
 .feature ul li {
     margin: 4px 0;
+}
+
+/* footer  */
+.footer {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--prime-color);
+    position: fixed;
+    bottom: 0;
+
+}
+
+.footer p {
+    color: var(--white-color);
 }
