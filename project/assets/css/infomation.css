@@ -1,15 +1,18 @@
 @import url(./base.css);
+@import url(./index.css);
 
 .content-l {
     display: flex;
 }
 
 .inf-l {
-    flex: 2;
+    flex: 1;
+    margin-right: 10px;
 }
 
 .inf-lr {
     flex: 1;
+
 }
 
 .inf-ll,
@@ -36,17 +39,52 @@
 }
 
 .inf-img img {
-    width: 120px;
-    height: 144px;
+    width: 110px;
+    height: 130px;
 }
 
 .inf-img {
     position: absolute;
-    top: 22%;
+    top: 24%;
     right: 12px;
 }
 
 /* thông tin bảng điểm  */
 .inf-gpa {
     margin-top: 20px;
+}
+
+/* btn */
+.div-btn {
+    margin-top: 12px;
+    text-align: right;
+}
+
+/* thông tin bên phải */
+
+.inf-add,
+.inf-gpa-add {
+    border: 1px solid var(--div-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.inf-gpa-add {
+    margin-top: 12px;
+}
+
+.inf-1>input {
+    flex: 2;
+}
+
+.inf-1 input {
+    height: 30px;
+    margin: 4px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.inf-1 span {
+    line-height: 34px;
+    transform: translateX(-60px);
 }
