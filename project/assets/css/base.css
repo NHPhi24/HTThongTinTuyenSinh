@@ -6,6 +6,9 @@
     --g-color: #C5E6F8;
     --div-color: #afafaf;
     --sign-up-color: #f5a534;
+    --btn-add-color: #1ff817;
+    --btn-set-color: #f9b914;
+    --btn-del-color: #ff0000;
 }
 
 * {
@@ -54,4 +57,16 @@ a:hover {
     margin: 10px 0;
     width: 100%;
     border-bottom: 1px solid var(--div-color);
+}
+
+.btn-add {
+    background-color: var(--btn-add-color);
+}
+
+.btn-set {
+    background-color: var(--btn-set-color);
+}
+
+.btn-del {
+    background-color: var(--btn-del-color);
 }

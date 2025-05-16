@@ -1,0 +1,49 @@
+@import url(./base.css);
+
+.DKXT {
+    padding: 20px;
+}
+
+.inf-1 {
+    display: flex;
+    width: 60%;
+    padding: 10px;
+}
+
+.inf-1 label {
+    flex: 1;
+}
+
+.inf-1>input {
+    flex: 1;
+    height: 30px;
+}
+
+.inf-1 #selectSchool,
+.inf-1 #selectIndustry,
+.inf-1 #select_ToHop {
+    flex: 1;
+    height: 30px;
+    width: 100%;
+}
+
+#select_NV {
+    width: 20%;
+}
+
+.industry {
+    display: flex;
+    justify-content: space-around;
+    margin: 6px 0;
+}
+
+
+
+.crud {
+    display: flex;
+}
+
+.footer {
+    bottom: 0;
+
+}

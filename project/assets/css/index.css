@@ -1,7 +1,7 @@
 @import url(./base.css);
 
 .container {
-    width: 100%
+    width: 100%;
 }
 
 body {
@@ -197,7 +197,6 @@ td {
     margin: 0 6px;
     padding: 8px 12px;
     border: none;
-    background-color: var(--sign-up-color);
     border-radius: 5px;
 }
 
@@ -226,8 +225,7 @@ td {
     justify-content: center;
     text-align: center;
     background-color: var(--prime-color);
-
-    bottom: 0;
+    position: absolute;
 }
 
 .footer p {

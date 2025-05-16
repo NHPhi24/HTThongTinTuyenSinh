@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/DKXT.css">
+    <title>HỆ THỐNG TUYỂN SINH TRỰC TUYẾN</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="nav-l">
+                <ul>
+                    <li><a href="/project/index.html">Trang chủ</a></li>
+                    <li><a href="">Hướng dẫn đăng ký</a></li>
+                    <li><a href="./DKXT.html">Đăng ký xét tuyển</a></li>
+                    <li><a href="">Quy chế - đào tạo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content-l">
+                <div class="DKXT">
+                    <div class="inf-1">
+                        <label for="">Nhập CCCD: </label>
+                        <input type="text" name="CCCD" id="CCCD" placeholder="Nhập CCCD: ">
+                    </div>
+                    <div class="inf-1">
+                        <label for="">Chọn trường: </label>
+                        <select name="" id="selectSchool">
+                            <option value="">ĐH Mỏ-Địa Chất</option>
+                            <option value="">ĐH Bách Khoa Hà Nội</option>
+                            <option value="">ĐH Kinh Tế Quốc Dân</option>
+                            <option value="">ĐH Xây Dựng</option>
+                            <option value="">ĐH Nông Nghiệp</option>
+                            <option value="">ĐH Thủy Lợi</option>
+                        </select>
+                    </div>
+                    <div class="industry">
+                        <div class="inf-1">
+                            <label for="">Chọn ngành học: </label>
+                            <select name="" id="selectIndustry">
+                                <option value="">Công nghệ thông tin</option>
+                                <option value="">Tự động hóa</option>
+                                <option value="">Quản trị kinh doanh</option>
+                                <option value="">Kế toán </option>
+                                <option value="">Khai thác mỏ</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn tổ hợp môn </label>
+                            <select name="" id="select_ToHop">
+                                <option value="">A00</option>
+                                <option value="">A01</option>
+                                <option value="">C00</option>
+                                <option value="">C01</option>
+                                <option value="">B</option>
+                                <option value="">D01</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn nguyện vọng </label>
+                            <select name="" id="select_NV">
+                                <option value="">01</option>
+                                <option value="">02</option>
+                                <option value="">03</option>
+                                <option value="">04</option>
+                                <option value="">05</option>
+                                <option value="">06</option>
+                                <option value="">07</option>
+                                <option value="">08</option>
+                                <option value="">09</option>
+                                <option value="">10</option>
+                                <option value="">11</option>
+                                <option value="">12</option>
+                                <option value="">13</option>
+                                <option value="">14</option>
+                                <option value="">15</option>
+                                <option value="">16</option>
+                                <option value="">17</option>
+                                <option value="">18</option>
+                                <option value="">19</option>
+                                <option value="">20</option>
+                            </select>
+                        </div>
+                        <div class="crud">
+                            <button class="btn btn-add">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="btn btn-set">
+                                <i class="fa-solid fa-gear"></i>
+                            </button>
+                            <button class="btn btn-del">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+                    <div class="industry">
+                        <div class="inf-1">
+                            <label for="">Chọn ngành học: </label>
+                            <select name="" id="selectIndustry">
+                                <option value="">Công nghệ thông tin</option>
+                                <option value="">Tự động hóa</option>
+                                <option value="">Quản trị kinh doanh</option>
+                                <option value="">Kế toán </option>
+                                <option value="">Khai thác mỏ</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn tổ hợp môn </label>
+                            <select name="" id="select_ToHop">
+                                <option value="">A00</option>
+                                <option value="">A01</option>
+                                <option value="">C00</option>
+                                <option value="">C01</option>
+                                <option value="">B</option>
+                                <option value="">D01</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn nguyện vọng </label>
+                            <select name="" id="select_NV">
+                                <option value="">01</option>
+                                <option value="">02</option>
+                                <option value="">03</option>
+                                <option value="">04</option>
+                                <option value="">05</option>
+                                <option value="">06</option>
+                                <option value="">07</option>
+                                <option value="">08</option>
+                                <option value="">09</option>
+                                <option value="">10</option>
+                                <option value="">11</option>
+                                <option value="">12</option>
+                                <option value="">13</option>
+                                <option value="">14</option>
+                                <option value="">15</option>
+                                <option value="">16</option>
+                                <option value="">17</option>
+                                <option value="">18</option>
+                                <option value="">19</option>
+                                <option value="">20</option>
+                            </select>
+                        </div>
+                        <div class="crud">
+                            <button class="btn btn-add">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="btn btn-set">
+                                <i class="fa-solid fa-gear"></i>
+                            </button>
+                            <button class="btn btn-del">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+                    <div class="industry">
+                        <div class="inf-1">
+                            <label for="">Chọn ngành học: </label>
+                            <select name="" id="selectIndustry">
+                                <option value="">Công nghệ thông tin</option>
+                                <option value="">Tự động hóa</option>
+                                <option value="">Quản trị kinh doanh</option>
+                                <option value="">Kế toán </option>
+                                <option value="">Khai thác mỏ</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn tổ hợp môn </label>
+                            <select name="" id="select_ToHop">
+                                <option value="">A00</option>
+                                <option value="">A01</option>
+                                <option value="">C00</option>
+                                <option value="">C01</option>
+                                <option value="">B</option>
+                                <option value="">D01</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn nguyện vọng </label>
+                            <select name="" id="select_NV">
+                                <option value="">01</option>
+                                <option value="">02</option>
+                                <option value="">03</option>
+                                <option value="">04</option>
+                                <option value="">05</option>
+                                <option value="">06</option>
+                                <option value="">07</option>
+                                <option value="">08</option>
+                                <option value="">09</option>
+                                <option value="">10</option>
+                                <option value="">11</option>
+                                <option value="">12</option>
+                                <option value="">13</option>
+                                <option value="">14</option>
+                                <option value="">15</option>
+                                <option value="">16</option>
+                                <option value="">17</option>
+                                <option value="">18</option>
+                                <option value="">19</option>
+                                <option value="">20</option>
+                            </select>
+                        </div>
+                        <div class="crud">
+                            <button class="btn btn-add">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="btn btn-set">
+                                <i class="fa-solid fa-gear"></i>
+                            </button>
+                            <button class="btn btn-del">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+                    <div class="industry">
+                        <div class="inf-1">
+                            <label for="">Chọn ngành học: </label>
+                            <select name="" id="selectIndustry">
+                                <option value="">Công nghệ thông tin</option>
+                                <option value="">Tự động hóa</option>
+                                <option value="">Quản trị kinh doanh</option>
+                                <option value="">Kế toán </option>
+                                <option value="">Khai thác mỏ</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn tổ hợp môn </label>
+                            <select name="" id="select_ToHop">
+                                <option value="">A00</option>
+                                <option value="">A01</option>
+                                <option value="">C00</option>
+                                <option value="">C01</option>
+                                <option value="">B</option>
+                                <option value="">D01</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn nguyện vọng </label>
+                            <select name="" id="select_NV">
+                                <option value="">01</option>
+                                <option value="">02</option>
+                                <option value="">03</option>
+                                <option value="">04</option>
+                                <option value="">05</option>
+                                <option value="">06</option>
+                                <option value="">07</option>
+                                <option value="">08</option>
+                                <option value="">09</option>
+                                <option value="">10</option>
+                                <option value="">11</option>
+                                <option value="">12</option>
+                                <option value="">13</option>
+                                <option value="">14</option>
+                                <option value="">15</option>
+                                <option value="">16</option>
+                                <option value="">17</option>
+                                <option value="">18</option>
+                                <option value="">19</option>
+                                <option value="">20</option>
+                            </select>
+                        </div>
+                        <div class="crud">
+                            <button class="btn btn-add">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="btn btn-set">
+                                <i class="fa-solid fa-gear"></i>
+                            </button>
+                            <button class="btn btn-del">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+                    <div class="industry">
+                        <div class="inf-1">
+                            <label for="">Chọn ngành học: </label>
+                            <select name="" id="selectIndustry">
+                                <option value="">Công nghệ thông tin</option>
+                                <option value="">Tự động hóa</option>
+                                <option value="">Quản trị kinh doanh</option>
+                                <option value="">Kế toán </option>
+                                <option value="">Khai thác mỏ</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn tổ hợp môn </label>
+                            <select name="" id="select_ToHop">
+                                <option value="">A00</option>
+                                <option value="">A01</option>
+                                <option value="">C00</option>
+                                <option value="">C01</option>
+                                <option value="">B</option>
+                                <option value="">D01</option>
+                            </select>
+                        </div>
+                        <div class="inf-1">
+                            <label for="">Chọn nguyện vọng </label>
+                            <select name="" id="select_NV">
+                                <option value="">01</option>
+                                <option value="">02</option>
+                                <option value="">03</option>
+                                <option value="">04</option>
+                                <option value="">05</option>
+                                <option value="">06</option>
+                                <option value="">07</option>
+                                <option value="">08</option>
+                                <option value="">09</option>
+                                <option value="">10</option>
+                                <option value="">11</option>
+                                <option value="">12</option>
+                                <option value="">13</option>
+                                <option value="">14</option>
+                                <option value="">15</option>
+                                <option value="">16</option>
+                                <option value="">17</option>
+                                <option value="">18</option>
+                                <option value="">19</option>
+                                <option value="">20</option>
+                            </select>
+                        </div>
+                        <div class="crud">
+                            <button class="btn btn-add">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="btn btn-set">
+                                <i class="fa-solid fa-gear"></i>
+                            </button>
+                            <button class="btn btn-del">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+            <div class="content-r">
+                <div class="login">
+                    <h1 class="title">Đăng nhập</h1>
+                    <form action="" method="post">
+                        <div class="account">
+                            <span> Tài khoản: </span>
+                            <input type="text" name="username" placeholder="Nhập tài khoản: ">
+                        </div>
+                        <div class="account">
+                            <span>Mật khẩu: </span>
+                            <input type="text" name="password" placeholder="Nhập mật khẩu: ">
+                        </div>
+                        <button class="btn">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Đăng nhập</span>
+                        </button>
+                        <a href="">Đổi mật khẩu</a>
+                    </form>
+                </div>
+                <div class="feature">
+                    <h1 class="title">Tính năng</h1>
+                    <ul>
+                        <li><a href="">Thông báo từ ban quản trị</a></li>
+                        <li><a href="">Chương trình đào tạo</a></li>
+                        <li><a href="./DKXT.html">Đăng ký tuyển sinh</a></li>
+                        <li><a href="./information.html">Xem thông tin hồ sơ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div>
+                <p>Copyright © 2020 Trường Đại học Mỏ - Địa chất</p>
+                <p>Version: MOHN-2025.03K.00 (updated 2025-03-26 16:06).</p>
+                <p>Design byAQTECH.VN</p>
+            </div>
+        </div>
+</body>
+
+</html>
