@@ -32,6 +32,10 @@ body {
     margin: 0 30px;
 }
 
+.nav-r>ul>li>a {
+    color: var(--red-color);
+}
+
 @media screen and (max-width: 400px) {
     html {
         font-size: 10px;

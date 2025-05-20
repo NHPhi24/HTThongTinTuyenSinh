@@ -19,26 +19,37 @@
 
 <body>
     <div class="container">
-        <div class="navbar">
-            <div class="nav-l">
-                <ul>
-                    <li><a href="/project/index.html">Trang chủ</a></li>
-                    <li><a href="">Hướng dẫn đăng ký</a></li>
-                    <li><a href="./assets/catalog/DKXT.html">Đăng ký xét tuyển</a></li>
-                    <li><a href="">Quy chế - đào tạo</a></li>
-                </ul>
-            </div>
-            <div class="nav-r">
-                <ul>
-                    <li><a href="./assets/catalog/login.html">Đăng nhập</a></li>
-                </ul>
-            </div>
-        </div>
+        <?php
+        include("layout/navbar.php");
+        ?>
         <div class="content">
             <div class="content-l">
                 <h1 class="title">Tin Tức</h1>
                 <div class="carousel">
                     <i class="fa-solid fa-angle-left"></i>
+
+                    <?php
+                    $sql = "Select * from tintuc";
+                    $result = mysqli_query($conn, $sql);
+
+                    if(mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo '
+                                <div class="item-carousel">
+                                    <div class="top-item">
+                                        <span class="date">24/09/2025</span>
+                                        <span clas="time">9:04</span>
+                                    </div>
+                                    <div class="bottom-item ">
+                                        <p class="text-warp">Hướng dẫn quy trình Thực tập, Đồ án (từ Học kỳ 2 năm học 2023-2024)
+                                            asjdlfja skldjf
+                                            kalsjdflk jasdkfj kaklsdjf klajsdkfj ask</p>
+                                    </div>
+                                </div>
+                            ';
+                        }
+                    }
+                    ?>
                     <div class="item-carousel">
                         <div class="top-item">
                             <span class="date">24/09/2025</span>
@@ -98,7 +109,8 @@
                                             <td>
                                                 <i class="fa-solid fa-angles-right"></i>
                                                 <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B
+                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt
+                                                        2B
                                                         năm học 2024-2025</a></p>
                                             </td>
                                             <td>
@@ -119,7 +131,8 @@
                                             <td>
                                                 <i class="fa-solid fa-angles-right"></i>
                                                 <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B
+                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt
+                                                        2B
                                                         năm học 2024-2025</a></p>
                                             </td>
                                             <td>
@@ -140,7 +153,8 @@
                                             <td>
                                                 <i class="fa-solid fa-angles-right"></i>
                                                 <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B
+                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt
+                                                        2B
                                                         năm học 2024-2025</a></p>
                                             </td>
                                             <td>
@@ -180,7 +194,8 @@
                                             <td>
                                                 <i class="fa-solid fa-angles-right"></i>
                                                 <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B
+                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt
+                                                        2B
                                                         năm học 2024-2025</a></p>
                                             </td>
                                             <td>
@@ -202,7 +217,8 @@
                                                 <i class="fa-solid fa-angles-right"></i>
                                                 <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
                                                         nghiệp /
-                                                        doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm học
+                                                        doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm
+                                                        học
                                                         2024-2025</a></p>
                                             </td>
                                             <td>
@@ -224,7 +240,8 @@
                                                 <i class="fa-solid fa-angles-right"></i>
                                                 <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
                                                         nghiệp /
-                                                        doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm học
+                                                        doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm
+                                                        học
                                                         2024-2025</a></p>
                                             </td>
                                             <td>
@@ -246,7 +263,8 @@
                                                 <i class="fa-solid fa-angles-right"></i>
                                                 <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
                                                         nghiệp /
-                                                        doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm học
+                                                        doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm
+                                                        học
                                                         2024-2025</a></p>
                                             </td>
                                             <td>
@@ -382,14 +400,11 @@
             </div>
 
         </div>
-        <div class="footer">
-            <div>
-                <p>Copyright © 2020 Trường Đại học Mỏ - Địa chất</p>
-                <p>Version: MOHN-2025.03K.00 (updated 2025-03-26 16:06).</p>
-                <p>Design byAQTECH.VN</p>
-            </div>
-        </div>
-        <script src="./assets/js/chatbox.js"></script>
+        <?php
+            include("layout/footer.php");
+        ?>
+        <script src="./assets/js/chatbox.js">
+        </script>
 </body>
 
 </html>
