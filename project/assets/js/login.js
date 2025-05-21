@@ -35,7 +35,7 @@ document.getElementById("back-to-login").addEventListener("click", () => showFor
 
 
 document.getElementById("back-to-index").addEventListener("click", () => {
-    window.location.href = "/project/index.html"; // Đường dẫn đến trang chủ
+    window.location.href = "/project/index.php"; // Đường dẫn đến trang chủ
 });
 
 // Chức năng ẩn hiển mật khẩu

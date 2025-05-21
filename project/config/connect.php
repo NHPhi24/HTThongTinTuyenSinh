@@ -1,4 +1,5 @@
 <?php
+    define('ROOT_URL' , 'http://localhost/HTThongtintuyensinh/project/');
     $server = 'localhost';
     $username = 'root';
     $password = '';
