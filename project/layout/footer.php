@@ -1,7 +1,3 @@
-<?php
-    require("config/connect.php");
-?>
-
 <div class="footer">
     <div>
         <p>Copyright © 2020 Trường Đại học Mỏ - Địa chất</p>

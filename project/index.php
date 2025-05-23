@@ -32,16 +32,16 @@
                     $sql = "SELECT * FROM tintuc ORDER BY Date DESC LIMIT 3";
                     $result = mysqli_query($conn, $sql);
 
-                    if(mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)) {
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
                             echo '
                                 <div class="item-carousel">
                                     <div class="top-item">
-                                        <span class="date">'.$row['Date'].'</span>
+                                        <span class="date">' . $row['Date'] . '</span>
                                         <span clas="time"></span>
                                     </div>
-                                    <div class="bottom-item ">
-                                        <p class="text-warp">'.$row['Tieu_de'].'</p>
+                                    <div class="bottom-item "> <a href="tintuc.php?id=' . $row['NewsID'] . '">
+                                        <p class="text-warp">' . $row['Tieu_de'] . '</p> </a>
                                     </div>
                                 </div>
                             ';
@@ -57,20 +57,21 @@
                         <?php
                         $sql = 'select * from tintuc order by Date desc limit 4,1';
                         $result = mysqli_query($conn, $sql);
-                        if(mysqli_num_rows($result) > 0) {
-                            while($row = mysqli_fetch_assoc($result)) {
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
                                 echo '
                                 <div class="top-item">
-                                    <span class="date">'.$row['Date'].'</span>
+                                    <span class="date">' . $row['Date'] . '</span>
                                 </div>
                                 <div class="content-announce">
-                                    <a href="index.php?id='.$row['NewsID'].'">
-                                        '.$row['Tieu_de'].'
+                                    <a href="tintuc.php?id=' . $row['NewsID'] . '">
+                                        ' . $row['Tieu_de'] . '
                                     </a>
                                 </div>
                                 ';
-                            }}
-                                
+                            }
+                        }
+
                         ?>
 
                     </div>
@@ -79,19 +80,19 @@
                             <?php
                             $sql = 'select * from tintuc order by Date desc limit 5,13';
                             $result = mysqli_query($conn, $sql);
-                            if(mysqli_num_rows($result) > 0) {
-                                while($row = mysqli_fetch_assoc($result)) {
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
                                     echo '<div class="item-intro">
                                             <table>
                                                 <tbody>
                                                     <tr>
                                                         <td>
                                                             <i class="fa-solid fa-angles-right"></i>
-                                                            <p class="content-intro"><a href="tintuc.php?id='.$row['NewsID'].'">'.$row['Tieu_de'].'</a></p>
+                                                            <p class="content-intro"><a href="tintuc.php?id=' . $row['NewsID'] . '">' . $row['Tieu_de'] . '</a></p>
                                                         </td>
                                                         <td>
                                                             <div class="top-item">
-                                                                <span class="date">'.$row['Date'].'</span>
+                                                                <span class="date">' . $row['Date'] . '</span>
                                                                 <span clas="time"></span>
                                                             </div>
                                                         </td>
@@ -100,7 +101,8 @@
                                             </table>
                                         </div>
                                     ';
-                                }}   
+                                }
+                            }
                             ?>
                         </div>
                     </div>
@@ -111,8 +113,8 @@
                     <?php
                     $sql = 'Select * from tintuc where Tieu_de Like "Hướng dẫn%" order by Tieu_de limit 4';
                     $result = mysqli_query($conn, $sql);
-                    if(mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)) {
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
                             echo '<div class="item-intro">
                                     <table>
                                         <tbody>
@@ -120,11 +122,11 @@
                                             <tr>
                                                 <td>
                                                     <i class="fa-solid fa-angles-right"></i>
-                                                    <p class="content-intro"><a href="tintuc.php?id = '.$row['NewsID'].'">'.$row['Tieu_de'].'</a></p>
+                                                    <p class="content-intro"><a href="tintuc.php?id=' . $row['NewsID'] . '">' . $row['Tieu_de'] . '</a></p>
                                                 </td>
                                                 <td>
                                                     <div class="top-item">
-                                                        <span class="date">'.$row['Date'].'</span>
+                                                        <span class="date">' . $row['Date'] . '</span>
                                                         <span clas="time"></span>
                                                     </div>
                                                 </td>
@@ -134,48 +136,68 @@
                                 </div>
                             
                             ';
-                        }}
+                        }
+                    }
                     ?>
 
 
                 </div>
             </div>
             <div class="content-r">
-                <?php
-                
-                ?>
+
                 <div class="login">
                     <h1 class="title">Đăng nhập</h1>
-                    <form action="" method="post">
-                        <div class="account">
-                            <span> Tài khoản: </span>
-                            <label for="">001200012345</label>
-                        </div>
-                        <div class="account">
-                            <span>Họ và tên: </span>
-                            <label for="">Nguyễn Văn A</label>
-                        </div>
-                        <button class="btn">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                            <span>Đăng xuất</span>
-                        </button>
-                        <a href="">Đổi mật khẩu</a>
+                    <form action="" method="get">
+                        <?php
+                        $sql = "select * from student st, login l where st.CCCD = l.UserID limit 1 ";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<div class="account">
+                                        <span> Tài khoản: </span>
+                                        <label for="">' . $row['CCCD'] . '</label>
+                                    </div>
+                                    <div class="account">
+                                        <span>Họ và tên: </span>
+                                        <label for="">' . $row['Names'] . '</label>
+                                    </div>
+                                    <button class="btn">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        <span>Đăng xuất</span>
+                                    </button>
+                                    <a href="">Đổi mật khẩu</a>
+                                ';
+                            }
+                        }
+
+                        ?>
+
                     </form>
                 </div>
                 <div class="feature">
                     <h1 class="title">Tính năng</h1>
-                    <ul>
+                    <ul class="tinhnang">
                         <li><a href="">Thông báo từ ban quản trị</a></li>
                         <li><a href="">Chương trình đào tạo</a></li>
                         <li><a href="./assets/catalog/DKXT.html">Đăng ký tuyển sinh</a></li>
                         <li><a href="./assets/catalog/information.html">Xem thông tin hồ sơ</a></li>
                     </ul>
+                    <?php
+
+                    $sql = 'select * from login where UserID = "admin" and Password = "admin123" ';
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<script src = "./assets/js/admin.js"> </script> ';
+                        }
+                    }
+                    ?>
                 </div>
             </div>
 
         </div>
         <?php
-            include("layout/footer.php");
+        include("layout/footer.php");
         ?>
         <script src="./assets/js/chatbox.js">
         </script>
