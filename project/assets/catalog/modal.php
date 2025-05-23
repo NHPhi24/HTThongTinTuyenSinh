@@ -45,7 +45,7 @@
 
         <!-- Form Đăng ký -->
         <div class="formpage hidden" id="signupForm">
-            <form action="">
+            <form action="/HTThongtintuyensinh/project/auth/register.php" method="POST">
                 <h2>Đăng ký</h2>
                 <div class="entryfield">
                     <span class="fa fa-user user"></span>
@@ -113,6 +113,35 @@
                 <div class="switch-form">
                     <p class="switch-form" id="back-to-login">Quay lại đăng nhập</p>
                 </div>
+            </form>
+        </div>
+
+        <!-- Form đổi mật khẩu -->
+        <div class="formpage hidden" id="changePwForm">
+            <form action="">
+                <h2>Đổi mật khẩu</h2>
+                <div class="entryfield">
+                    <span class="fa fa-lock lock"></span>
+                    <input type="password" placeholder="Mật khẩu cũ" required>
+                    <span class="fa fa-eye-slash eye"></span>
+                </div>
+
+                <div class="entryfield">
+                    <span class="fa fa-lock lock"></span>
+                    <input type="password" placeholder="Mật khẩu mới" required>
+                    <span class="fa fa-eye-slash eye"></span>
+                </div>
+
+                <div class="entryfield">
+                    <span class="fa fa-lock lock"></span>
+                    <input type="password" placeholder="Nhập lại mật khẩu" required>
+                    <span class="fa fa-eye-slash eye"></span>
+                </div>
+
+                <div class="entryfield">
+                    <input type="submit" value="Xác nhận">
+                </div>
+
             </form>
         </div>
 

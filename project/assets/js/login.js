@@ -8,6 +8,7 @@ function hideAllForms() {
     document.getElementById("signupForm").classList.add("hidden");
     document.getElementById("forgotPwForm").classList.add("hidden");
     document.getElementById("otpForm").classList.add("hidden");
+    document.getElementById("changePwForm").classList.add("hidden");
 }
 
 function showForm(formId) {
@@ -22,6 +23,9 @@ switch (formType) {
         break;
     case "signup":
         showForm("signupForm");
+        break;
+    case "changePw":
+        showForm("changePwForm");
         break;
     default:
         showForm("loginForm");

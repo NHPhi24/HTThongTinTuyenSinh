@@ -11,25 +11,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/DKXT.css">
-    <link rel="stylesheet" href="../css/chatbox.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/DKXT.css">
+    <link rel="stylesheet" href="./assets/css/chatbox.css">
     <title>HỆ THỐNG TUYỂN SINH TRỰC TUYẾN</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="navbar">
-            <div class="nav-l">
-                <ul>
-                    <li><a href="/project/index.html">Trang chủ</a></li>
-                    <li><a href="">Hướng dẫn đăng ký</a></li>
-                    <li><a href="./DKXT.html">Đăng ký xét tuyển</a></li>
-                    <li><a href="">Quy chế - đào tạo</a></li>
-                </ul>
-            </div>
-        </div>
+        <?php include("layout/navbar.php"); ?>
         <div class="content">
             <div class="content-l">
                 <div class="DKXT">
@@ -38,23 +29,23 @@
 
                         <!-- Ô nhập CCCD -->
                         <div class="form-group">
-                        <label for="cccd">CCCD:</label>
-                        <input type="number" id="cccd" placeholder="Nhập số CCCD" required />
+                            <label for="cccd">CCCD:</label>
+                            <input type="number" id="cccd" placeholder="Nhập số CCCD" required />
                         </div>
 
                         <!-- Tiêu đề bảng -->
                         <div class="table-header">
-                        <div>Thứ tự</div>
-                        <div>Trường</div>
-                        <div>Ngành</div>
-                        <div>Tổ hợp môn</div>
-                        <div>Chỉnh sửa</div>
+                            <div>Thứ tự</div>
+                            <div>Trường</div>
+                            <div>Ngành</div>
+                            <div>Tổ hợp môn</div>
+                            <div>Chỉnh sửa</div>
                         </div>
 
                         <div id="industry-list" class="industry-list"></div>
 
                         <button id="add-btn" class="btn" onclick="addRow()">
-                        <i class="fa fa-plus"></i> Thêm nguyện vọng
+                            <i class="fa fa-plus"></i> Thêm nguyện vọng
                         </button>
                     </div>
                 </div>
@@ -89,13 +80,9 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div>
-                <p>Copyright © 2020 Trường Đại học Mỏ - Địa chất</p>
-                <p>Version: MOHN-2025.03K.00 (updated 2025-03-26 16:06).</p>
-                <p>Design byAQTECH.VN</p>
-            </div>
-        </div>
+        <?php
+        include("layout/footer.php");
+        ?>
 
         <script src="../js/DKXT.js"></script>
         <script src="../js/chatbox.js"></script>

@@ -1,13 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Tạo HTML
   const chatHTML = `
-    <div class="chat-button" id="chatButton"></div>
+    <div class="chat-button" id="chatButton"><img src="./assets/img/mess.jpeg" alt="chat"></div>
     <div class="chat-box" id="chatBox">
       <div class="chat-header">
         <p>Chat</p>
         <button class="closeChat fa-solid fa-xmark" id="closeChat"></button>
       </div>
-      <div class="chat-content" id="chatContent"></div>
+      <div class="chat-content" id="chatContent">
+        
+      </div>
+
+      <div class="chat-quick-options" id="chatQuickOptions">
+        <button class="quick-option"></button>
+        <button class="quick-option"></button>
+        <button class="quick-option"></button>
+      </div>
       <div class="chat-input-area">
         <input type="text" id="chatInput" placeholder="Type a message..." />
         <button id="sendMessage">Send</button>
@@ -25,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatContent = document.getElementById('chatContent');
 
   chatButton.addEventListener('click', () => {
+    //localStorage.removeItem('chatMessages')
     chatBox.style.display = 'flex';
     loadMessages();
   });
@@ -54,13 +63,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   sendMessageButton.addEventListener('click', () => {
-    const message = chatInput.value.trim();
+  const message = chatInput.value.trim().toLowerCase();
     if (message) {
       displayMessage(message, 'user');
       saveMessage(message, 'user');
       chatInput.value = '';
+
       setTimeout(() => {
-        const reply = "Cảm ơn bạn đã nhắn!";
+        let reply = "Xin lỗi, tôi chưa hiểu câu hỏi của bạn.";
+
+        switch (true) {
+          case message.includes("") || message.includes(""):
+            reply = "";
+            break;
+        }
+
         displayMessage(reply, 'admin');
         saveMessage(reply, 'admin');
       }, 1000);
@@ -70,4 +87,32 @@ document.addEventListener("DOMContentLoaded", () => {
   chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') sendMessageButton.click();
   });
+
+  const quickOptions = document.querySelectorAll('.quick-option');
+
+  quickOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const message = option.textContent;
+      displayMessage(message, 'user');
+      saveMessage(message, 'user');
+
+      setTimeout(() => {
+
+        if (message.includes("")) {
+          reply = "";
+          pageLink = "";
+        } else if (message.includes("")) {
+          reply = "";
+        } else if (message.includes("")) {
+          reply = "";
+        }
+
+        displayMessage(reply, 'admin');
+        saveMessage(reply, 'admin');
+      }, 1000);
+    });
+  });
 });
+
+
+

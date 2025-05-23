@@ -182,16 +182,6 @@
                         <li><a href="./assets/catalog/DKXT.html">Đăng ký tuyển sinh</a></li>
                         <li><a href="./assets/catalog/information.html">Xem thông tin hồ sơ</a></li>
                     </ul>
-                    <?php
-
-                    $sql = 'select * from login where UserID = "admin" and Password = "admin123" ';
-                    $result = mysqli_query($conn, $sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<script src = "./assets/js/admin.js"> </script> ';
-                        }
-                    }
-                    ?>
                 </div>
             </div>
 
