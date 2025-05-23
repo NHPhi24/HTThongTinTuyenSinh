@@ -1,49 +1,133 @@
-@import url(./base.css);
-
-.DKXT {
-    padding: 20px;
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
 }
 
-.inf-1 {
+.container {
+    background: white;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
     display: flex;
-    width: 60%;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    min-width: 100px;
+}
+
+.form-group input {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.table-header {
+    display: flex;
+    font-weight: bold;
     padding: 10px;
+    background: #d1e3ff;
+    border-radius: 6px;
+    align-items: center;
 }
 
-.inf-1 label {
+.table-header div {
     flex: 1;
+    text-align: center;
 }
 
-.inf-1>input {
-    flex: 1;
-    height: 30px;
+.industry-list {
+    margin-top: 10px;
 }
 
-.inf-1 #selectSchool,
-.inf-1 #selectIndustry,
-.inf-1 #select_ToHop {
-    flex: 1;
-    height: 30px;
-    width: 100%;
-}
-
-#select_NV {
-    width: 20%;
-}
-
-.industry {
+.industry-row {
     display: flex;
-    justify-content: space-around;
-    margin: 6px 0;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #f5f8ff;
+    border-radius: 6px;
+    border: 1px solid #d1d9ff;
 }
 
-
+.industry-row select {
+    padding: 7px 8px;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    flex: 1;
+}
 
 .crud {
     display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    flex: 1;
 }
 
-.footer {
-    bottom: 0;
+.btn {
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
 
+.btn-save {
+    background-color: #28a745;
+}
+
+.btn-save:hover {
+    background-color: #1e7e34;
+}
+
+.btn-set {
+    background-color: #007bff;
+}
+
+.btn-set:hover {
+    background-color: #0056b3;
+}
+
+.btn-del {
+    background-color: #dc3545;
+}
+
+.btn-del:hover {
+    background-color: #a71d2a;
+}
+
+#add-btn {
+    margin-top: 10px;
+    background-color: #28a745;
+    width: 100%;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#add-btn:hover {
+    background-color: #1e7e34;
 }

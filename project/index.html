@@ -30,7 +30,7 @@
             </div>
             <div class="nav-r">
                 <ul>
-                    <li><a href="./assets/catalog/login.html">Đăng nhập</a></li>
+                    <li><a href="#" id="go-to-login">Đăng nhập</a></li>
                 </ul>
             </div>
         </div>
@@ -367,7 +367,7 @@
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Đăng nhập</span>
                         </button>
-                        <a href="">Đổi mật khẩu</a>
+                        <a href="#" id="go-to-changePw">Đổi mật khẩu</a>
                     </form>
                 </div>
                 <div class="feature">
@@ -389,6 +389,17 @@
                 <p>Design byAQTECH.VN</p>
             </div>
         </div>
+        
+        <script>
+            document.getElementById("go-to-login").addEventListener("click", function () {
+                window.location.href = "./assets/catalog/login.html?form=login";
+            });
+
+            document.getElementById("go-to-changePw").addEventListener("click", function () {
+                window.location.href = "./assets/catalog/login.html?form=changePw";
+            });
+        </script>
+
         <script src="./assets/js/chatbox.js"></script>
 </body>
 
