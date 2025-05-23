@@ -1,8 +1,6 @@
 @import url(./base.css);
 
-.container {
-    width: 100%;
-}
+
 
 body {
     position: relative;
@@ -58,12 +56,12 @@ body {
 }
 
 .content-l {
-    width: 80%;
+    width: 79%;
     padding: 10px;
 }
 
 .content-r {
-    width: 20%;
+    width: 19%;
     padding: 10px;
 }
 

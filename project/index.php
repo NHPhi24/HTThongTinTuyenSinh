@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/chatbox.css">
+    <link rel="stylesheet" href="./assets/css/carousel.css">
     <title>HỆ THỐNG TUYỂN SINH TRỰC TUYẾN</title>
 </head>
 
@@ -26,383 +27,181 @@
             <div class="content-l">
                 <h1 class="title">Tin Tức</h1>
                 <div class="carousel">
-                    <i class="fa-solid fa-angle-left"></i>
-
+                    <i class="fa-solid fa-angle-left" id="prevBtn"></i>
+                    <div class="carousel-track">
                     <?php
-                    $sql = "Select * from tintuc";
+                    $sql = "SELECT * FROM tintuc ORDER BY Date DESC LIMIT 3";
                     $result = mysqli_query($conn, $sql);
 
-                    if(mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)) {
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
                             echo '
                                 <div class="item-carousel">
                                     <div class="top-item">
-                                        <span class="date">24/09/2025</span>
-                                        <span clas="time">9:04</span>
+                                        <span class="date">' . $row['Date'] . '</span>
+                                        <span clas="time"></span>
                                     </div>
-                                    <div class="bottom-item ">
-                                        <p class="text-warp">Hướng dẫn quy trình Thực tập, Đồ án (từ Học kỳ 2 năm học 2023-2024)
-                                            asjdlfja skldjf
-                                            kalsjdflk jasdkfj kaklsdjf klajsdkfj ask</p>
+                                    <div class="bottom-item "> <a href="tintuc.php?id=' . $row['NewsID'] . '">
+                                        <p class="text-warp">' . $row['Tieu_de'] . '</p> </a>
                                     </div>
                                 </div>
                             ';
                         }
                     }
                     ?>
-                    <div class="item-carousel">
-                        <div class="top-item">
-                            <span class="date">24/09/2025</span>
-                            <span clas="time">9:04</span>
-                        </div>
-                        <div class="bottom-item ">
-                            <p class="text-warp">Hướng dẫn quy trình Thực tập, Đồ án (từ Học kỳ 2 năm học 2023-2024)
-                                asjdlfja skldjf
-                                kalsjdflk jasdkfj kaklsdjf klajsdkfj ask</p>
-                        </div>
                     </div>
-                    <div class="item-carousel">
-                        <div class="top-item">
-                            <span class="date">24/09/2025</span>
-                            <span clas="time">9:04</span>
-                        </div>
-                        <div class="bottom-item">
-                            <p class="text-warp">Hướng dẫn quy trình Thực tập, Đồ án (từ Học kỳ 2 năm học 2023-2024)
-                                asjdlfja skldjf
-                                kalsjdflk jasdkfj kaklsdjf klajsdkfj ask</p>
-                        </div>
-                    </div>
-                    <div class="item-carousel">
-                        <div class="top-item">
-                            <span class="date">24/09/2025</span>
-                            <span clas="time">9:04</span>
-                        </div>
-                        <div class="bottom-item">
-                            <p class="text-warp">Hướng dẫn quy trình Thực tập, Đồ án (từ Học kỳ 2 năm học 2023-2024)
-                                asjdlfja skldjf
-                                kalsjdflk jasdkfj kaklsdjf klajsdkfj ask</p>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-angle-right"></i>
+                    <i class="fa-solid fa-angle-right" id="nextBtn">></i>
                 </div>
                 <h1 class="title">Thông báo</h1>
                 <div class="announce">
-
                     <div class="announce-l">
                         <img src="./assets/img/ChungNhan.png" alt="">
-                        <div class="top-item">
-                            <span class="date">24/09/2025</span>
-                            <span clas="time">9:04</span>
-                        </div>
-                        <div class="content-announce">
-                            <a href="">
-                                Hướng dẫn quy trình Thực tập, Đồ án (từ Học kỳ 2 năm học 2023-2024)
-                            </a>
-                        </div>
+                        <?php
+                        $sql = 'select * from tintuc order by Date desc limit 4,1';
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '
+                                <div class="top-item">
+                                    <span class="date">' . $row['Date'] . '</span>
+                                </div>
+                                <div class="content-announce">
+                                    <a href="tintuc.php?id=' . $row['NewsID'] . '">
+                                        ' . $row['Tieu_de'] . '
+                                    </a>
+                                </div>
+                                ';
+                            }
+                        }
+
+                        ?>
+
                     </div>
                     <div class="announce-r">
                         <div class="ann-r-l">
-                            <div class="item-intro">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <i class="fa-solid fa-angles-right"></i>
-                                                <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt
-                                                        2B
-                                                        năm học 2024-2025</a></p>
-                                            </td>
-                                            <td>
-                                                <div class="top-item">
-                                                    <span class="date">24/09/2025</span>
-                                                    <span clas="time">9:04</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="item-intro">
-                                <table>
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                <i class="fa-solid fa-angles-right"></i>
-                                                <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt
-                                                        2B
-                                                        năm học 2024-2025</a></p>
-                                            </td>
-                                            <td>
-                                                <div class="top-item">
-                                                    <span class="date">24/09/2025</span>
-                                                    <span clas="time">9:04</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="item-intro">
-                                <table>
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                <i class="fa-solid fa-angles-right"></i>
-                                                <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt
-                                                        2B
-                                                        năm học 2024-2025</a></p>
-                                            </td>
-                                            <td>
-                                                <div class="top-item">
-                                                    <span class="date">24/09/2025</span>
-                                                    <span clas="time">9:04</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="item-intro">
-                                <table>
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                <i class="fa-solid fa-angles-right"></i>
-                                                <p class="content-intro"><a href="">Về việc nghỉ học</a></p>
-                                            </td>
-                                            <td>
-                                                <div class="top-item">
-                                                    <span class="date">24/09/2025</span>
-                                                    <span clas="time">9:04</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="item-intro">
-                                <table>
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                <i class="fa-solid fa-angles-right"></i>
-                                                <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp / doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt
-                                                        2B
-                                                        năm học 2024-2025</a></p>
-                                            </td>
-                                            <td>
-                                                <div class="top-item">
-                                                    <span class="date">24/09/2025</span>
-                                                    <span clas="time">9:04</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="item-intro">
-                                <table>
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                <i class="fa-solid fa-angles-right"></i>
-                                                <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp /
-                                                        doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm
-                                                        học
-                                                        2024-2025</a></p>
-                                            </td>
-                                            <td>
-                                                <div class="top-item">
-                                                    <span class="date">24/09/2025</span>
-                                                    <span clas="time">9:04</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="item-intro">
-                                <table>
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                <i class="fa-solid fa-angles-right"></i>
-                                                <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp /
-                                                        doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm
-                                                        học
-                                                        2024-2025</a></p>
-                                            </td>
-                                            <td>
-                                                <div class="top-item">
-                                                    <span class="date">24/09/2025</span>
-                                                    <span clas="time">9:04</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="item-intro">
-                                <table>
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                <i class="fa-solid fa-angles-right"></i>
-                                                <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt
-                                                        nghiệp /
-                                                        doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm
-                                                        học
-                                                        2024-2025</a></p>
-                                            </td>
-                                            <td>
-                                                <div class="top-item">
-                                                    <span class="date">24/09/2025</span>
-                                                    <span clas="time">9:04</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <?php
+                            $sql = 'select * from tintuc order by Date desc limit 5,13';
+                            $result = mysqli_query($conn, $sql);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '<div class="item-intro">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <i class="fa-solid fa-angles-right"></i>
+                                                            <p class="content-intro"><a href="tintuc.php?id=' . $row['NewsID'] . '">' . $row['Tieu_de'] . '</a></p>
+                                                        </td>
+                                                        <td>
+                                                            <div class="top-item">
+                                                                <span class="date">' . $row['Date'] . '</span>
+                                                                <span clas="time"></span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    ';
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
 
                 </div>
                 <h1 class="title">Hướng dẫn</h1>
                 <div class="intro">
-                    <div class="item-intro">
-                        <table>
-                            <tbody>
+                    <?php
+                    $sql = 'Select * from tintuc where Tieu_de Like "Hướng dẫn%" order by Tieu_de limit 4';
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<div class="item-intro">
+                                    <table>
+                                        <tbody>
 
-                                <tr>
-                                    <td>
-                                        <i class="fa-solid fa-angles-right"></i>
-                                        <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt nghiệp /
-                                                doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm học
-                                                2024-2025</a></p>
-                                    </td>
-                                    <td>
-                                        <div class="top-item">
-                                            <span class="date">24/09/2025</span>
-                                            <span clas="time">9:04</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="item-intro">
-                        <table>
-                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <i class="fa-solid fa-angles-right"></i>
+                                                    <p class="content-intro"><a href="tintuc.php?id=' . $row['NewsID'] . '">' . $row['Tieu_de'] . '</a></p>
+                                                </td>
+                                                <td>
+                                                    <div class="top-item">
+                                                        <span class="date">' . $row['Date'] . '</span>
+                                                        <span clas="time"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            
+                            ';
+                        }
+                    }
+                    ?>
 
-                                <tr>
-                                    <td>
-                                        <i class="fa-solid fa-angles-right"></i>
-                                        <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt nghiệp /
-                                                doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm học
-                                                2024-2025</a></p>
-                                    </td>
-                                    <td>
-                                        <div class="top-item">
-                                            <span class="date">24/09/2025</span>
-                                            <span clas="time">9:04</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="item-intro">
-                        <table>
-                            <tbody>
 
-                                <tr>
-                                    <td>
-                                        <i class="fa-solid fa-angles-right"></i>
-                                        <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt nghiệp /
-                                                doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm học
-                                                2024-2025</a></p>
-                                    </td>
-                                    <td>
-                                        <div class="top-item">
-                                            <span class="date">24/09/2025</span>
-                                            <span clas="time">9:04</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="item-intro">
-                        <table>
-                            <tbody>
-
-                                <tr>
-                                    <td>
-                                        <i class="fa-solid fa-angles-right"></i>
-                                        <p class="content-intro"><a href="">Thông báo về việc Thực tập tốt nghiệp /
-                                                doanh nghiệp và Đồ án tốt nghiệp của sinh viên đợt 2B năm học
-                                                2024-2025</a></p>
-                                    </td>
-                                    <td>
-                                        <div class="top-item">
-                                            <span class="date">24/09/2025</span>
-                                            <span clas="time">9:04</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
             <div class="content-r">
+
                 <div class="login">
                     <h1 class="title">Đăng nhập</h1>
-                    <form action="" method="post">
-                        <div class="account">
-                            <span> Tài khoản: </span>
-                            <input type="text" name="username" placeholder="Nhập tài khoản: ">
-                        </div>
-                        <div class="account">
-                            <span>Mật khẩu: </span>
-                            <input type="text" name="password" placeholder="Nhập mật khẩu: ">
-                        </div>
-                        <button class="btn">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                            <span>Đăng nhập</span>
-                        </button>
-                        <a href="">Đổi mật khẩu</a>
+                    <form action="" method="get">
+                        <?php
+                        $sql = "select * from student st, login l where st.CCCD = l.UserID limit 1 ";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<div class="account">
+                                        <span> Tài khoản: </span>
+                                        <label for="">' . $row['CCCD'] . '</label>
+                                    </div>
+                                    <div class="account">
+                                        <span>Họ và tên: </span>
+                                        <label for="">' . $row['Names'] . '</label>
+                                    </div>
+                                    <button class="btn">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        <span>Đăng xuất</span>
+                                    </button>
+                                    <a href="">Đổi mật khẩu</a>
+                                ';
+                            }
+                        }
+
+                        ?>
+
                     </form>
                 </div>
                 <div class="feature">
                     <h1 class="title">Tính năng</h1>
-                    <ul>
+                    <ul class="tinhnang">
                         <li><a href="">Thông báo từ ban quản trị</a></li>
                         <li><a href="">Chương trình đào tạo</a></li>
                         <li><a href="./assets/catalog/DKXT.html">Đăng ký tuyển sinh</a></li>
                         <li><a href="./assets/catalog/information.html">Xem thông tin hồ sơ</a></li>
                     </ul>
+                    <?php
+
+                    $sql = 'select * from login where UserID = "admin" and Password = "admin123" ';
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<script src = "./assets/js/admin.js"> </script> ';
+                        }
+                    }
+                    ?>
                 </div>
             </div>
 
         </div>
         <?php
-            include("layout/footer.php");
+        include("layout/footer.php");
         ?>
+        <script src="./assets/js/carousel.js"></script>
         <script src="./assets/js/chatbox.js">
         </script>
 </body>

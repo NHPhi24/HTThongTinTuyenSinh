@@ -17,16 +17,15 @@
     <div class="container">
         <!-- Form Đăng nhập -->
         <div class="formpage" id="loginForm">
-            <form action="">
+            <form action="/HTThongtintuyensinh/project/auth/login.php" method="POST" autocomplete="off">
                 <h2>Login</h2>
                 <div class="entryfield">
                     <span class="fa fa-user user"></span>
-                    <input type="text" placeholder="Tên đăng nhập" required>
+                    <input type="text" name="username" placeholder="Tên đăng nhập" required>
                 </div>
-
                 <div class="entryfield">
                     <span class="fa fa-lock lock"></span>
-                    <input type="password" placeholder="Mật khẩu" required>
+                    <input type="password" name="password" placeholder="Mật khẩu" required>
                     <span class="fa fa-eye-slash eye"></span>
                 </div>
 
@@ -35,7 +34,7 @@
                 </div>
 
                 <div class="entryfield">
-                    <input type="submit" value="Login">
+                    <input type="submit" name="Login" value="Login">
                 </div>
 
                 <p class="newAccount">
