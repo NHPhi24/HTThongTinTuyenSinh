@@ -1,40 +1,36 @@
 <?php
 include("../config/connect.php");
-if (!$conn) {
-    echo 'Server is error';
 
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
-        // Lấy dữ liệu từ form
-        $username = trim($_POST["username"]);
-        $email = trim($_POST["email"]);
-        $password = $_POST["password"];
-        $confirm_password = $_POST["confirm_password"];
 
-        // Kiểm tra mật khẩu khớp
-        if ($password !== $confirm_password) {
-            die("Mật khẩu không khớp.");
-        }
+if (isset($_POST["resgister"])) {
+    // Lấy dữ liệu từ form
+    $CCCD = $_POST['CCCD'];
+    $name = $_POST['Name'];
+    $email = $_POST['Email'];
+    $phone = $_POST['Phone'];
+    $pwd = $_POST['password'];
+    $confirm_pwd = $_POST['confirm_pwd'];
 
-        // Mã hóa mật khẩu
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $select_cccd = "select * from `login` where UserID = '$CCCD' ";
+    $result = mysqli_query($conn, $select_cccd);
+    if (mysqli_num_rows($result) > 0) {
+        echo "<script>alert('CCCD đã tồn tại'); </script>";
+    };
 
-        // Ghi dữ liệu vào DB (giả sử bảng users có các cột: username, email, password)
-        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+    if ($pwd == $confirm_pwd) {
+        $pass = $pwd;
+    } else {
+        echo "<script>alert('Mật khẩu không trùng khớp'); window.location='../index.php'; </script>";
+    }
 
-        $stmt = mysqli_prepare($conn, $sql);
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPassword);
-            if (mysqli_stmt_execute($stmt)) {
-                echo "Đăng ký thành công!";
-            } else {
-                echo "Lỗi khi ghi dữ liệu: " . mysqli_error($conn);
-            }
-            mysqli_stmt_close($stmt);
-        } else {
-            echo "Lỗi prepare: " . mysqli_error($conn);
-        }
+    $sql = " Insert into `login`(UserID, Name, Password, Email, Phone)
+        Values ('$CCCD','$name', '$pass', '$email', '$phone')";
+
+    $res = mysqli_query($conn, $sql);
+    if ($res) {
+        echo "<script>alert('Đăng Ký Tài Khoản Thành Công!'); window.location='../index.php';</script>";
+    } else {
+        echo "Có lỗi xảy ra: " . mysqli_error($conn);
     }
 }
-
-mysqli_close($conn);

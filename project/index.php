@@ -1,3 +1,8 @@
+<?php
+if (session_start() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -149,17 +154,14 @@
                     <h1 class="title">Đăng nhập</h1>
                     <form action="" method="get">
                         <?php
-                        $sql = "select * from student st, login l where st.CCCD = l.UserID limit 1 ";
-                        $result = mysqli_query($conn, $sql);
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo '<div class="account">
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                            echo '<div class="account">
                                         <span> Tài khoản: </span>
-                                        <label for="">' . $row['CCCD'] . '</label>
+                                        <label for="">' . $_SESSION['UserID'] . '</label>
                                     </div>
                                     <div class="account">
                                         <span>Họ và tên: </span>
-                                        <label for="">' . $row['Names'] . '</label>
+                                        <label for="">' . $_SESSION['Name'] . '</label>
                                     </div>
                                     <button class="btn">
                                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -167,8 +169,8 @@
                                     </button>
                                     <a href="">Đổi mật khẩu</a>
                                 ';
-                            }
                         }
+
 
                         ?>
 
@@ -181,6 +183,13 @@
                         <li><a href="">Chương trình đào tạo</a></li>
                         <li><a href="./assets/catalog/DKXT.html">Đăng ký tuyển sinh</a></li>
                         <li><a href="./assets/catalog/information.html">Xem thông tin hồ sơ</a></li>
+                        <?php
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                            if ($_SESSION['role']  == "admin") {
+                                echo '<a href = "" > Dashboard </a>';
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>

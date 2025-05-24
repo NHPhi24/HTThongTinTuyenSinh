@@ -9,11 +9,30 @@ if (isset($_POST['Login'])) {
 
     $sql = "Select * from login where UserID = '$username' and Password = '$password' ";
     $result = mysqli_query($conn, $sql);
-    $total = mysqli_num_rows($result);
-    if ($total == 1) {
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            //người dùng đã đăng nhập thành công 
+            $_SESSION['loggedin'] = true;
+            $_SESSION['UserID'] = $row['UserID'];
+            $_SESSION['Name'] = $row['Name'];
+            $_SESSION['Password'] = $row['Password'];
+            $_SESSION['Email'] = $row['Email'];
+            $_SESSION['Phone'] = $row['Phone'];
+            $_SESSION['role'] = $row['role'];
+        }
         echo "<script>window.location = '../index.php'</script>";
     } else {
         echo "<script>window.location = '../assets/catalog/modal.php'; 
-        alert('Đăng nhập thất bại. Kiểm tra lại tài khoản hoặc mật khẩu');</script>";
-    }   
+        alert('Đăng nhập thất bại. Kiểm tra lại tài khoản hoặc mật khẩu');
+        </script>";
+    }
+    // $total = mysqli_num_rows($result);
+    // if ($total == 1) {
+
+    //     echo "<script>window.location = '../index.php'</script>";
+    // } else {
+    //     echo "<script>window.location = '../assets/catalog/modal.php'; 
+    //     alert('Đăng nhập thất bại. Kiểm tra lại tài khoản hoặc mật khẩu');</script>";
+    // }   
 }
