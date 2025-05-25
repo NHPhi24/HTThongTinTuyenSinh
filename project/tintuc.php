@@ -27,15 +27,15 @@
             <div class="content-l">
                 <div class="cont">
                     <?php
-                    if (isset($_GET['id']) && !empty($_GET['id'])) {
-                        $id = $_GET["id"];
-                        $sql = "select * from tintuc where NewsID = $id ";
+                    if (isset($_GET['id']) && !empty($_GET['id'])) { //kiểm tra get ID đã tồn tại hay chưa
+                        $id = $_GET["id"]; //khởi  tạo biến $id
+                        $sql = "select * from tintuc where NewsID = $id "; //câu lệnh truy vấn 
                         $result = mysqli_query($conn, $sql);
 
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo '
-                                    <h1>' . $row['Tieu_de'] . '</h1>
+                                    <h1>' . $row['Tieu_de'] . '</h1> 
                                     <p>' . $row['Noi_dung'] . '</p>
                                 ';
                             }

@@ -1,3 +1,8 @@
+<?php
+if (session_start() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +21,11 @@
     <link rel="stylesheet" href="./assets/css/DKXT.css">
     <link rel="stylesheet" href="./assets/css/chatbox.css">
     <title>HỆ THỐNG TUYỂN SINH TRỰC TUYẾN</title>
+    <style>
+    .footer {
+        bottom: 0;
+    }
+    </style>
 </head>
 
 <body>
@@ -26,7 +36,9 @@
                 <div class="DKXT">
                     <div class="container">
                         <h2>Đăng ký Nguyện vọng</h2>
-
+                        <?php
+                        $sql = "Select * from ";
+                        ?>
                         <!-- Ô nhập CCCD -->
                         <div class="form-group">
                             <label for="cccd">CCCD:</label>
@@ -103,8 +115,8 @@
         include("layout/footer.php");
         ?>
 
-        <script src="../js/DKXT.js"></script>
-        <script src="../js/chatbox.js"></script>
+        <script src="./assets/js/DKXT.js"></script>
+        <script src="./assets/js/chatbox.js"></script>
 </body>
 
 </html>
