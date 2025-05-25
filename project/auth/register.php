@@ -8,7 +8,6 @@ if (isset($_POST["resgister"])) {
     $CCCD = $_POST['CCCD'];
     $name = $_POST['Name'];
     $email = $_POST['Email'];
-    $phone = $_POST['Phone'];
     $pwd = $_POST['password'];
     $confirm_pwd = $_POST['confirm_pwd'];
 

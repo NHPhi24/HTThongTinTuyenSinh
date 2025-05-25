@@ -27,12 +27,4 @@ if (isset($_POST['Login'])) {
         alert('Đăng nhập thất bại. Kiểm tra lại tài khoản hoặc mật khẩu');
         </script>";
     }
-    // $total = mysqli_num_rows($result);
-    // if ($total == 1) {
-
-    //     echo "<script>window.location = '../index.php'</script>";
-    // } else {
-    //     echo "<script>window.location = '../assets/catalog/modal.php'; 
-    //     alert('Đăng nhập thất bại. Kiểm tra lại tài khoản hoặc mật khẩu');</script>";
-    // }   
 }

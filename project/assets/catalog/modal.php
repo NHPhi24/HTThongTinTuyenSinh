@@ -59,10 +59,6 @@
                     <span class="fa fa-user user"></span>
                     <input type="text" name="Email" placeholder="Email" required>
                 </div>
-                <div class="entryfield">
-                    <span class="fa fa-user user"></span>
-                    <input type="text" name="Phone" placeholder="Nhập số điện thoại" required>
-                </div>
 
                 <div class="entryfield">
                     <span class="fa fa-lock lock"></span>

@@ -41,8 +41,6 @@
                             }
                         }
                     }
-
-
                     ?>
 
                 </div>
@@ -64,16 +62,17 @@
                                         <span>Họ và tên: </span>
                                         <label for="">' . $row['Names'] . '</label>
                                     </div>
-                                    <button class="btn">
-                                        <i class="fa-solid fa-right-from-bracket"></i>
-                                        <span>Đăng xuất</span>
-                                    </button>
-                                    <a href="">Đổi mật khẩu</a>
                                 ';
                             }
                         }
-
                         ?>
+                        <button class="btn">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <a href="<?= ROOT_URL ?>auth/logout.php">
+                                Đăng xuất
+                            </a>
+                        </button>
+                        <a href="">Đổi mật khẩu</a>
                     </form>
                 </div>
                 <div class="feature">
@@ -81,8 +80,8 @@
                     <ul>
                         <li><a href="">Thông báo từ ban quản trị</a></li>
                         <li><a href="">Chương trình đào tạo</a></li>
-                        <li><a href="./DKXT.html">Đăng ký tuyển sinh</a></li>
-                        <li><a href="">Xem thông tin hồ sơ</a></li>
+                        <li><a href="<?= ROOT_URL ?>DKXT.php">Đăng ký tuyển sinh</a></li>
+                        <li><a href="<?= ROOT_URL ?>information.php">Xem thông tin hồ sơ</a></li>
                     </ul>
                 </div>
             </div>

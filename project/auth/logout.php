@@ -1,6 +1,7 @@
 <?php
-    session_start();
-    session_unset();
+session_start();
+if (isset($_SESSION["UserID"])) {
+    unset($_SESSION["UserID"]);
     session_destroy();
-    echo "<script>window.location='../index.php';</script>";
-?>
+}
+header("location: ../index.php");
