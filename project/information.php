@@ -140,78 +140,187 @@ if (session_start() === PHP_SESSION_NONE) {
                     <div class="inf-add">
                         <h4>Thêm thông tin thí sinh</h4>
                         <div class="separate"></div>
-                        <form action="" method="get">
-                            <div class="inf-1">
-                                <label>Số CCCD: </label>
-                                <input type="text" placeholder="Nhập CCCD: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Họ và tên: </label>
-                                <input type="text" placeholder="Nhập CCCD: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Ngày sinh: </label>
-                                <input type="date" placeholder="Nhập CCCD: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Giới tính: </label>
-                                <input type="radio"> <span>Nam</span>
-                                <input type="radio"> <span>Nữ</span>
-                            </div>
-                            <div class="inf-1">
-                                <label>Địa chỉ: </label>
-                                <input type="text" placeholder="Nhập địa chỉ: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Trường THPT: </label>
-                                <input type="text" placeholder="Nhập trường THPT">
-                            </div>
+                        <form action="" method="post">
+                            <?php
+                            $sql = "select * from student where CCCD = " . $_SESSION['UserID'] . " ";
+                            $result = mysqli_query($conn, $sql);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '
+                                    <div class="inf-1">
+                                        <label>Số CCCD: </label>
+                                        <input type="text" name="CCCD" value = "' . $_SESSION['UserID'] . ' " placeholder="Nhập CCCD:">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Họ và tên: </label>
+                                        <input type="text" name="Name" value = "' . $_SESSION['Name'] . ' " placeholder="Nhập họ và tên: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Ngày sinh: </label>
+                                        <input type="date" name="date" value=' . $row['DateOfBirth'] . '> 
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Giới tính: </label>
+                                        <input type="radio" name="sex" value ="Nam" ' . ($row['Sex'] == 'Nam' ? 'checked' : '') . ' checked="checked"> <span>Nam</span>
+                                        <input type="radio" name="sex" value = "Nữ" ' . ($row['Sex'] == 'Nữ' ? 'checked' : '') . '> <span>Nữ</span>
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Địa chỉ: </label>
+                                        <input type="text" name="diachi" value = "' . $row['Origin'] . ' " placeholder="Nhập địa chỉ:">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Trường THPT: </label>
+                                        <input type="text" name="THPT" value = "' . $row['HighSchool'] . '"  placeholder="Nhập trường THPT: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Số điện thoại: </label>
+                                        <input type="text" name="THPT" value = "' . $row['Phone'] . '" placeholder="Nhập số điện thoại: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Email: </label>
+                                        <input type="text" name="Email" value = "' . $_SESSION['Email'] . '" placeholder="Nhập Email: ">
+                                    </div>
+                                    ';
+                                }
+                            }
+                            if (mysqli_num_rows($result) == 0) {
+                                echo '
+                                <div class="inf-1">
+                                        <label>Số CCCD: </label>
+                                        <input type="text" name="CCCD" value = "' . $_SESSION['UserID'] . ' " placeholder="Nhập CCCD:">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Họ và tên: </label>
+                                        <input type="text" name="Name" value = "' . $_SESSION['Name'] . ' " placeholder="Nhập họ và tên: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Ngày sinh: </label>
+                                        <input type="date" name="date"> 
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Giới tính: </label>
+                                        <input type="radio" name="sex" value ="Nam"  checked="checked"> <span>Nam</span>
+                                        <input type="radio" name="sex" value = "Nữ" > <span>Nữ</span>
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Địa chỉ: </label>
+                                        <input type="text" name="diachi" placeholder="Nhập địa chỉ:">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Trường THPT: </label>
+                                        <input type="text" name="THPT" placeholder="Nhập trường THPT: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Số điện thoại: </label>
+                                        <input type="text" name="THPT" placeholder="Nhập số điện thoại: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Email: </label>
+                                        <input type="text" name="Email" placeholder="Nhập Email: ">
+                                    </div>
+                                ';
+                            }
+
+                            ?>
+
                         </form>
                     </div>
                     <div class="inf-gpa-add">
-                        <form action="">
-                            <div class="inf-1">
+                        <form action="" method="POST">
+                            <?php
+                            $sql = "Select * from scoreprofile sc, student st where sc.ScoreID = " . $_SESSION['UserID'] . " and sc.ScoreID = st.CCCD ";
+                            $result = mysqli_query($conn, $sql);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '
+                                    <div class="inf-1">
                                 <label>Điểm môn toán: </label>
-                                <input type="float" placeholder="Nhập điểm môn toán: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Điểm môn văn: </label>
-                                <input type="float" placeholder="Nhập điểm môn văn: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Điểm môn anh: </label>
-                                <input type="float" placeholder="Nhập điểm môn anh: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Điểm môn lý: </label>
-                                <input type="float" placeholder="Nhập điểm môn lý: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Điểm môn hóa: </label>
-                                <input type="float" placeholder="Nhập điểm môn hóa: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Điểm môn Sinh: </label>
-                                <input type="float" placeholder="Nhập điểm môn Sinh: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Điểm môn sử: </label>
-                                <input type="float" placeholder="Nhập điểm môn sử: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Điểm môn địa: </label>
-                                <input type="float" placeholder="Nhập điểm môn địa: ">
-                            </div>
-                            <div class="inf-1">
-                                <label>Điểm môn giáo dục công dân: </label>
-                                <input type="float" placeholder="Nhập điểm môn giáo dục công dân: ">
-                            </div>
+                                    <input type="float" name="Toan" value="' . $row['Toan'] . '" placeholder="Nhập điểm môn toán: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn văn: </label>
+                                    <input type="float" name="Van" value = "' . $row['Van'] . '"  placeholder="Nhập điểm môn văn: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn anh: </label>
+                                    <input type="float" name="Anh" value = "' . $row['Anh'] . '" placeholder="Nhập điểm môn anh: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn lý: </label>
+                                    <input type="float" name="Ly" value = "' . $row['Ly'] . '" placeholder="Nhập điểm môn lý: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn hóa: </label>
+                                    <input type="float" name="Hoa" value = "' . $row['Hoa'] . '" placeholder="Nhập điểm môn hóa: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn Sinh: </label>
+                                    <input type="float" name="Sinh" value = "' . $row['Sinh'] . '" placeholder="Nhập điểm môn Sinh: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn sử: </label>
+                                    <input type="float" name="Su" value = "' . $row['Su'] . '" placeholder="Nhập điểm môn sử: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn địa lý: </label>
+                                    <input type="float" name="Dia" value = "' . $row['Dia'] . '" placeholder="Nhập điểm môn địa: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn GDCD: </label>
+                                    <input type="float" name="GDCD" value = "' . $row['GDCD'] . '" placeholder="Nhập điểm môn GDCD: ">
+                                </div>
+                                    ';
+                                }
+                            }
+                            if (mysqli_num_rows($result) == 0) {
+                                echo '
+                                <div class="inf-1">
+                                <label>Điểm môn toán: </label>
+                                    <input type="float" name="Toan" placeholder="Nhập điểm môn toán: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn văn: </label>
+                                    <input type="float" name="Van"placeholder="Nhập điểm môn văn: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn anh: </label>
+                                    <input type="float" name="Anh" placeholder="Nhập điểm môn anh: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn lý: </label>
+                                    <input type="float" name="Ly" placeholder="Nhập điểm môn lý: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn hóa: </label>
+                                    <input type="float" name="Hoa" placeholder="Nhập điểm môn hóa: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn Sinh: </label>
+                                    <input type="float" name="Sinh" placeholder="Nhập điểm môn Sinh: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn sử: </label>
+                                    <input type="float" name="Su" placeholder="Nhập điểm môn sử: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn địa lý: </label>
+                                    <input type="float" name="Dia" placeholder="Nhập điểm môn địa: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn GDCD: </label>
+                                    <input type="float" name="GDCD" placeholder="Nhập điểm môn GDCD: ">
+                                </div>
+                                ';
+                            }
+
+                            ?>
+
                         </form>
                     </div>
                     <div class="div-btn">
-                        <button class="btn btn-add">Thêm thông tin</button>
-                        <button class="btn btn-set">Sửa thông tin</button>
-                        <button class="btn btn-del">Xóa thông tin</button>
+                        <button class="btn btn-add"> <a href="">Thêm thông tin</a> </button>
+                        <button class="btn btn-set"><a href=" ">Sửa thông tin</a></button>
+                        <button class="btn btn-del"><a href=" ">Xóa thông tin</a></button>
                     </div>
                 </div>
             </div>

@@ -20,15 +20,15 @@ if (isset($_POST["resgister"])) {
     if ($pwd == $confirm_pwd) {
         $pass = $pwd;
     } else {
-        echo "<script>alert('Mật khẩu không trùng khớp'); window.location='../index.php'; </script>";
+        echo "<script>alert('Mật khẩu không trùng khớp'); window.location='../assets/catalog/modal.php'; </script>";
     }
 
-    $sql = " Insert into `login`(UserID, Name, Password, Email, Phone)
-        Values ('$CCCD','$name', '$pass', '$email', '$phone')";
+    $sql = " Insert into `login`(UserID, Name, Password, Email)
+        Values ('$CCCD','$name', '$pass', '$email')";
 
     $res = mysqli_query($conn, $sql);
     if ($res) {
-        echo "<script>alert('Đăng Ký Tài Khoản Thành Công!'); window.location='../index.php';</script>";
+        echo "<script>alert('Đăng Ký Tài Khoản Thành Công!'); window.location='../assets/catalog/modal.php';</script>";
     } else {
         echo "Có lỗi xảy ra: " . mysqli_error($conn);
     }
