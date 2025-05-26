@@ -37,7 +37,7 @@ h2 {
     font-weight: bold;
     padding: 10px;
     background: #d1e3ff;
-    border-radius: 6px;
+    border-radius: 5px;
     align-items: center;
 }
 
@@ -56,13 +56,13 @@ h2 {
     gap: 10px;
     padding: 10px;
     background: #f5f8ff;
-    border-radius: 6px;
+    border-radius: 5px;
     border: 1px solid #d1d9ff;
 }
 
 .industry-row select {
-    padding: 7px 8px;
-    border-radius: 4px;
+    padding: 6px 8px;
+    border-radius: 5px;
     border: 1px solid #bbb;
     font-size: 14px;
     background: white;
@@ -121,7 +121,7 @@ h2 {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    border-radius: 6px;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
     color: white;

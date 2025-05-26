@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Tạo HTML
   const chatHTML = `
-    <div class="chat-button" id="chatButton"><img src="./assets/img/mess.jpeg" alt="chat"></div>
+    <div class="chat-button" id="chatButton"><img src="./img/mess.jpeg" alt="chat"></div>
     <div class="chat-box" id="chatBox">
       <div class="chat-header">
         <p>Chat</p>

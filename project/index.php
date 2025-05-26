@@ -30,7 +30,7 @@
                     <i class="fa-solid fa-angle-left" id="prevBtn"></i>
                     <div class="carousel-track">
                     <?php
-                    $sql = "SELECT * FROM tintuc ORDER BY Date DESC LIMIT 3";
+                    $sql = "SELECT * FROM tintuc ORDER BY Date DESC LIMIT 10";
                     $result = mysqli_query($conn, $sql);
 
                     if (mysqli_num_rows($result) > 0) {
@@ -50,7 +50,7 @@
                     }
                     ?>
                     </div>
-                    <i class="fa-solid fa-angle-right" id="nextBtn">></i>
+                    <i class="fa-solid fa-angle-right" id="nextBtn"></i>
                 </div>
                 <h1 class="title">Thông báo</h1>
                 <div class="announce">
@@ -141,8 +141,6 @@
                         }
                     }
                     ?>
-
-
                 </div>
             </div>
             <div class="content-r">
@@ -184,16 +182,6 @@
                         <li><a href="./assets/catalog/DKXT.html">Đăng ký tuyển sinh</a></li>
                         <li><a href="./assets/catalog/information.html">Xem thông tin hồ sơ</a></li>
                     </ul>
-                    <?php
-
-                    $sql = 'select * from login where UserID = "admin" and Password = "admin123" ';
-                    $result = mysqli_query($conn, $sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<script src = "./assets/js/admin.js"> </script> ';
-                        }
-                    }
-                    ?>
                 </div>
             </div>
 

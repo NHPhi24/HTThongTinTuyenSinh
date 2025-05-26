@@ -15,5 +15,5 @@ if (isset($_POST['Login'])) {
     } else {
         echo "<script>window.location = '../assets/catalog/modal.php'; 
         alert('Đăng nhập thất bại. Kiểm tra lại tài khoản hoặc mật khẩu');</script>";
-    }
+    }   
 }
