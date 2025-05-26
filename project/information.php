@@ -140,7 +140,7 @@ if (session_start() === PHP_SESSION_NONE) {
                     <div class="inf-add">
                         <h4>Thêm thông tin thí sinh</h4>
                         <div class="separate"></div>
-                        <form action="" method="post">
+                        <form action="<?= ROOT_URL ?>auth/infor_crud.php" method="post">
                             <?php
                             $sql = "select * from student where CCCD = " . $_SESSION['UserID'] . " ";
                             $result = mysqli_query($conn, $sql);
@@ -148,6 +148,10 @@ if (session_start() === PHP_SESSION_NONE) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo '
                                     <div class="inf-1">
+                                        <label>Số STT: </label>
+                                        <input type="text" name="STT" value= "' . $row['student_ID'] . '" placeholder="Nhập STT:">
+                                    </div>
+                                    <div class="inf-1"> 
                                         <label>Số CCCD: </label>
                                         <input type="text" name="CCCD" value = "' . $_SESSION['UserID'] . ' " placeholder="Nhập CCCD:">
                                     </div>
@@ -174,7 +178,7 @@ if (session_start() === PHP_SESSION_NONE) {
                                     </div>
                                     <div class="inf-1">
                                         <label>Số điện thoại: </label>
-                                        <input type="text" name="THPT" value = "' . $row['Phone'] . '" placeholder="Nhập số điện thoại: ">
+                                        <input type="text" name="phone" value = "' . $row['Phone'] . '" placeholder="Nhập số điện thoại: ">
                                     </div>
                                     <div class="inf-1">
                                         <label>Email: </label>
@@ -185,8 +189,12 @@ if (session_start() === PHP_SESSION_NONE) {
                             }
                             if (mysqli_num_rows($result) == 0) {
                                 echo '
-                                <div class="inf-1">
-                                        <label>Số CCCD: </label>
+                                    <div class="inf-1">
+                                        <label>Số STT: </label>
+                                        <input type="text" name="STT" placeholder="Nhập STT:">
+                                    </div>
+                                    <div class="inf-1">
+                                    <label>Số CCCD: </label>
                                         <input type="text" name="CCCD" value = "' . $_SESSION['UserID'] . ' " placeholder="Nhập CCCD:">
                                     </div>
                                     <div class="inf-1">
@@ -212,21 +220,27 @@ if (session_start() === PHP_SESSION_NONE) {
                                     </div>
                                     <div class="inf-1">
                                         <label>Số điện thoại: </label>
-                                        <input type="text" name="THPT" placeholder="Nhập số điện thoại: ">
+                                        <input type="text" name="phone" placeholder="Nhập số điện thoại: ">
                                     </div>
                                     <div class="inf-1">
                                         <label>Email: </label>
-                                        <input type="text" name="Email" placeholder="Nhập Email: ">
+                                        <input type="text" name="Email" value = ' . $_SESSION['Email'] . ' placeholder="Nhập Email: ">
                                     </div>
                                 ';
                             }
 
                             ?>
-
+                            <div class="separate"></div>
+                            <div class="div-btn">
+                                <button class="btn btn-add" name="add">Thêm thông tin </button>
+                                <button class="btn btn-set" name=" set">Sửa thông tin</button>
+                                <button class="btn btn-del" name="del">Xóa thông tin</button>
+                            </div>
                         </form>
                     </div>
+
                     <div class="inf-gpa-add">
-                        <form action="" method="POST">
+                        <form action="<?= ROOT_URL ?>auth/infor_crud.php" method="POST">
                             <?php
                             $sql = "Select * from scoreprofile sc, student st where sc.ScoreID = " . $_SESSION['UserID'] . " and sc.ScoreID = st.CCCD ";
                             $result = mysqli_query($conn, $sql);
@@ -234,48 +248,56 @@ if (session_start() === PHP_SESSION_NONE) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo '
                                     <div class="inf-1">
-                                <label>Điểm môn toán: </label>
-                                    <input type="float" name="Toan" value="' . $row['Toan'] . '" placeholder="Nhập điểm môn toán: ">
-                                </div>
-                                <div class="inf-1">
-                                    <label>Điểm môn văn: </label>
-                                    <input type="float" name="Van" value = "' . $row['Van'] . '"  placeholder="Nhập điểm môn văn: ">
-                                </div>
-                                <div class="inf-1">
-                                    <label>Điểm môn anh: </label>
-                                    <input type="float" name="Anh" value = "' . $row['Anh'] . '" placeholder="Nhập điểm môn anh: ">
-                                </div>
-                                <div class="inf-1">
-                                    <label>Điểm môn lý: </label>
-                                    <input type="float" name="Ly" value = "' . $row['Ly'] . '" placeholder="Nhập điểm môn lý: ">
-                                </div>
-                                <div class="inf-1">
-                                    <label>Điểm môn hóa: </label>
-                                    <input type="float" name="Hoa" value = "' . $row['Hoa'] . '" placeholder="Nhập điểm môn hóa: ">
-                                </div>
-                                <div class="inf-1">
-                                    <label>Điểm môn Sinh: </label>
-                                    <input type="float" name="Sinh" value = "' . $row['Sinh'] . '" placeholder="Nhập điểm môn Sinh: ">
-                                </div>
-                                <div class="inf-1">
-                                    <label>Điểm môn sử: </label>
-                                    <input type="float" name="Su" value = "' . $row['Su'] . '" placeholder="Nhập điểm môn sử: ">
-                                </div>
-                                <div class="inf-1">
-                                    <label>Điểm môn địa lý: </label>
-                                    <input type="float" name="Dia" value = "' . $row['Dia'] . '" placeholder="Nhập điểm môn địa: ">
-                                </div>
-                                <div class="inf-1">
-                                    <label>Điểm môn GDCD: </label>
-                                    <input type="float" name="GDCD" value = "' . $row['GDCD'] . '" placeholder="Nhập điểm môn GDCD: ">
-                                </div>
+                                        <label>CCCD:  </label>
+                                        <input type="float" name="CCCD" value="' . $_SESSION['UserID'] . '" placeholder="Nhập điểm môn toán: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Điểm môn toán: </label>
+                                        <input type="float" name="Toan" value="' . $row['Toan'] . '" placeholder="Nhập điểm môn toán: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Điểm môn văn: </label>
+                                        <input type="float" name="Van" value = "' . $row['Van'] . '"  placeholder="Nhập điểm môn văn: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Điểm môn anh: </label>
+                                        <input type="float" name="Anh" value = "' . $row['Anh'] . '" placeholder="Nhập điểm môn anh: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Điểm môn lý: </label>
+                                        <input type="float" name="Ly" value = "' . $row['Ly'] . '" placeholder="Nhập điểm môn lý: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Điểm môn hóa: </label>
+                                        <input type="float" name="Hoa" value = "' . $row['Hoa'] . '" placeholder="Nhập điểm môn hóa: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Điểm môn Sinh: </label>
+                                        <input type="float" name="Sinh" value = "' . $row['Sinh'] . '" placeholder="Nhập điểm môn Sinh: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Điểm môn sử: </label>
+                                        <input type="float" name="Su" value = "' . $row['Su'] . '" placeholder="Nhập điểm môn sử: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Điểm môn địa lý: </label>
+                                        <input type="float" name="Dia" value = "' . $row['Dia'] . '" placeholder="Nhập điểm môn địa: ">
+                                    </div>
+                                    <div class="inf-1">
+                                        <label>Điểm môn GDCD: </label>
+                                        <input type="float" name="GDCD" value = "' . $row['GDCD'] . '" placeholder="Nhập điểm môn GDCD: ">
+                                    </div>
                                     ';
                                 }
                             }
                             if (mysqli_num_rows($result) == 0) {
                                 echo '
                                 <div class="inf-1">
-                                <label>Điểm môn toán: </label>
+                                    <label>CCCD:  </label>
+                                    <input type="float" name="CCCD" value="' . $_SESSION['UserID'] . '" placeholder="Nhập điểm môn toán: ">
+                                </div>
+                                <div class="inf-1">
+                                    <label>Điểm môn toán: </label>
                                     <input type="float" name="Toan" placeholder="Nhập điểm môn toán: ">
                                 </div>
                                 <div class="inf-1">
@@ -314,14 +336,18 @@ if (session_start() === PHP_SESSION_NONE) {
                             }
 
                             ?>
-
+                            <div class="separate"></div>
+                            <div class="div-btn">
+                                <button class="btn btn-add" name="add_sroce">Thêm điểm
+                                </button>
+                                <button class="btn btn-set" name="set_score">Sửa điểm
+                                </button>
+                                <button class="btn btn-del" name="del_score">Xóa điểm
+                                </button>
+                            </div>
                         </form>
                     </div>
-                    <div class="div-btn">
-                        <button class="btn btn-add"> <a href="">Thêm thông tin</a> </button>
-                        <button class="btn btn-set"><a href=" ">Sửa thông tin</a></button>
-                        <button class="btn btn-del"><a href=" ">Xóa thông tin</a></button>
-                    </div>
+
                 </div>
             </div>
             <div class="content-r">
