@@ -1,3 +1,8 @@
+<?php
+if (session_start() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +21,11 @@
     <link rel="stylesheet" href="./assets/css/DKXT.css">
     <link rel="stylesheet" href="./assets/css/chatbox.css">
     <title>HỆ THỐNG TUYỂN SINH TRỰC TUYẾN</title>
+    <style>
+    .footer {
+        bottom: 0;
+    }
+    </style>
 </head>
 
 <body>
@@ -26,7 +36,9 @@
                 <div class="DKXT">
                     <div class="container">
                         <h2>Đăng ký Nguyện vọng</h2>
-
+                        <?php
+                        $sql = "Select * from ";
+                        ?>
                         <!-- Ô nhập CCCD -->
                         <div class="form-group">
                             <label for="cccd">CCCD:</label>
@@ -54,19 +66,38 @@
                 <div class="login">
                     <h1 class="title">Đăng nhập</h1>
                     <form action="" method="post">
-                        <div class="account">
-                            <span> Tài khoản: </span>
-                            <input type="text" name="username" placeholder="Nhập tài khoản: ">
-                        </div>
-                        <div class="account">
-                            <span>Mật khẩu: </span>
-                            <input type="text" name="password" placeholder="Nhập mật khẩu: ">
-                        </div>
+                        <?php
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                            echo '<div class="account">
+                                        <span> Tài khoản: </span>
+                                        <label>' . $_SESSION['UserID'] . '</label>
+                                    </div>
+                                    <div class="account">
+                                        <span>Họ và tên: </span>
+                                        <label>' . $_SESSION['Name'] . '</label>
+                                    </div>
+                                    
+                                ';
+                        } else {
+                            echo '<div class="account">
+                                        <span> Tài khoản: </span>
+                                        <label> chưa có thông tin</label>
+                                    </div>
+                                    <div class="account">
+                                        <span>Họ và tên: </span>
+                                        <label> chưa có thông tin</label>
+                                    </div>
+                            ';
+                        }
+                        ?>
                         <button class="btn">
                             <i class="fa-solid fa-right-from-bracket"></i>
-                            <span>Đăng nhập</span>
+                            <a href="<?= ROOT_URL ?>auth/logout.php">
+                                Đăng xuất
+                            </a>
                         </button>
                         <a href="">Đổi mật khẩu</a>
+
                     </form>
                 </div>
                 <div class="feature">
@@ -74,8 +105,8 @@
                     <ul>
                         <li><a href="">Thông báo từ ban quản trị</a></li>
                         <li><a href="">Chương trình đào tạo</a></li>
-                        <li><a href="./DKXT.html">Đăng ký tuyển sinh</a></li>
-                        <li><a href="./information.html">Xem thông tin hồ sơ</a></li>
+                        <li><a href="<?= ROOT_URL ?>DKXT.php">Đăng ký tuyển sinh</a></li>
+                        <li><a href="<?= ROOT_URL ?>information.php">Xem thông tin hồ sơ</a></li>
                     </ul>
                 </div>
             </div>
@@ -84,8 +115,8 @@
         include("layout/footer.php");
         ?>
 
-        <script src="../js/DKXT.js"></script>
-        <script src="../js/chatbox.js"></script>
+        <script src="./assets/js/DKXT.js"></script>
+        <script src="./assets/js/chatbox.js"></script>
 </body>
 
 </html>

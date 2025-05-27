@@ -49,28 +49,35 @@
                 <h2>Đăng ký</h2>
                 <div class="entryfield">
                     <span class="fa fa-user user"></span>
-                    <input type="text" placeholder="Tên đăng nhập" required>
+                    <input type="text" name="Name" placeholder="Tên đăng nhập" required>
                 </div>
-
                 <div class="entryfield">
                     <span class="fa fa-user user"></span>
-                    <input type="text" placeholder="Email" required>
+                    <input type="text" name="CCCD" placeholder="CCCD" required>
+                </div>
+                <div class="entryfield">
+                    <span class="fa fa-user user"></span>
+                    <input type="text" name="Email" placeholder="Email" required>
                 </div>
 
                 <div class="entryfield">
                     <span class="fa fa-lock lock"></span>
-                    <input type="password" placeholder="Mật khẩu" required>
+                    <input type="password" name="password" placeholder="Mật khẩu" required>
                     <span class="fa fa-eye-slash eye"></span>
                 </div>
 
                 <div class="entryfield">
                     <span class="fa fa-lock lock"></span>
-                    <input type="password" placeholder="Nhập lại mật khẩu" required>
+                    <input type="password" name="confirm_pwd" placeholder="Nhập lại mật khẩu" required>
                     <span class="fa fa-eye-slash eye"></span>
                 </div>
 
                 <div class="entryfield">
+<<<<<<< HEAD
                     <input type="submit" name='register' value="Đăng ký">
+=======
+                    <input type="submit" name="resgister" value="Đăng ký">
+>>>>>>> a24b035fc4daf571eaab4c99e27446cdf2939b90
                 </div>
 
                 <p class="newAccount">

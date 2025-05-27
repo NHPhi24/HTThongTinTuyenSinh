@@ -2,31 +2,39 @@
 include("../config/connect.php");
 if (!$conn) {
     echo 'Server is error';
-}
-else {
-    if (isset($_POST['register'])) {
-        // Lấy thông tin từ form đăng ký
-        $userid = $_POST['UserID'];
-        $email = $_POST['Email'];
-        $password = $_POST['Password'];
-        $confirm = $_POST['ConfirmPassword'];
-        // Kiểm tra xem tên đăng nhập đã tồn tại chưa
-        $sql = "SELECT * FROM login WHERE UserID='$username'";
-        $result = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result) > 0) {
-            // Nếu tên đăng nhập đã tồn tại, hiển thị thông báo lỗi
-            echo "Username already exists.";
-        } else {
-            // Nếu tên đăng nhập chưa tồn tại, thêm người dùng mới vào cơ sở dữ liệu
-            $sql = "INSERT INTO login (UserID, Email, Password, ConfirmPassword) VALUES ('$userid', '$email', '$password', '$confirm')";
-            if (mysqli_query($conn, $sql)) {
-            // Chuyển hướng đến trang chính sau khi đăng ký thành công
-                header("Location: /HTThongtintuyensinh/project/index.php");
-                exit();
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
+        // Lấy dữ liệu từ form
+        $username = trim($_POST["username"]);
+        $email = trim($_POST["email"]);
+        $password = $_POST["password"];
+        $confirm_password = $_POST["confirm_password"];
+
+        // Kiểm tra mật khẩu khớp
+        if ($password !== $confirm_password) {
+            die("Mật khẩu không khớp.");
         }
+
+        // Mã hóa mật khẩu
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Ghi dữ liệu vào DB (giả sử bảng users có các cột: username, email, password)
+        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+
+        $stmt = mysqli_prepare($conn, $sql);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPassword);
+            if (mysqli_stmt_execute($stmt)) {
+                echo "Đăng ký thành công!";
+            } else {
+                echo "Lỗi khi ghi dữ liệu: " . mysqli_error($conn);
+            }
+            mysqli_stmt_close($stmt);
+        } else {
+            echo "Lỗi prepare: " . mysqli_error($conn);
+        }
+    }
 }
-};
+
+mysqli_close($conn);
