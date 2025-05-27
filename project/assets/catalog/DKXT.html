@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/DKXT.css">
+    <link rel="stylesheet" href="../css/chatbox.css">
+    <title>HỆ THỐNG TUYỂN SINH TRỰC TUYẾN</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="nav-l">
+                <ul>
+                    <li><a href="/project/index.html">Trang chủ</a></li>
+                    <li><a href="">Hướng dẫn đăng ký</a></li>
+                    <li><a href="./DKXT.html">Đăng ký xét tuyển</a></li>
+                    <li><a href="">Quy chế - đào tạo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content-l">
+                <div class="DKXT">
+                    <div class="container">
+                        <h2>Đăng ký Nguyện vọng</h2>
+
+                        <!-- Ô nhập CCCD -->
+                        <div class="form-group">
+                        <label for="cccd">CCCD:</label>
+                        <input type="number" id="cccd" placeholder="Nhập số CCCD" required />
+                        </div>
+
+                        <!-- Tiêu đề bảng -->
+                        <div class="table-header">
+                        <div>Thứ tự</div>
+                        <div>Trường</div>
+                        <div>Ngành</div>
+                        <div>Tổ hợp môn</div>
+                        <div>Chỉnh sửa</div>
+                        </div>
+
+                        <div id="industry-list" class="industry-list"></div>
+
+                        <button id="add-btn" class="btn" onclick="addRow()">
+                        <i class="fa fa-plus"></i> Thêm nguyện vọng
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="content-r">
+                <div class="login">
+                    <h1 class="title">Đăng nhập</h1>
+                    <form action="" method="post">
+                        <div class="account">
+                            <span> Tài khoản: </span>
+                            <input type="text" name="username" placeholder="Nhập tài khoản: ">
+                        </div>
+                        <div class="account">
+                            <span>Mật khẩu: </span>
+                            <input type="text" name="password" placeholder="Nhập mật khẩu: ">
+                        </div>
+                        <button class="btn">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Đăng nhập</span>
+                        </button>
+                        <a href="">Đổi mật khẩu</a>
+                    </form>
+                </div>
+                <div class="feature">
+                    <h1 class="title">Tính năng</h1>
+                    <ul>
+                        <li><a href="">Thông báo từ ban quản trị</a></li>
+                        <li><a href="">Chương trình đào tạo</a></li>
+                        <li><a href="./DKXT.html">Đăng ký tuyển sinh</a></li>
+                        <li><a href="./information.html">Xem thông tin hồ sơ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div>
+                <p>Copyright © 2020 Trường Đại học Mỏ - Địa chất</p>
+                <p>Version: MOHN-2025.03K.00 (updated 2025-03-26 16:06).</p>
+                <p>Design byAQTECH.VN</p>
+            </div>
+        </div>
+
+        <script src="../js/DKXT.js"></script>
+        <script src="../js/chatbox.js"></script>
+</body>
+
+</html>
