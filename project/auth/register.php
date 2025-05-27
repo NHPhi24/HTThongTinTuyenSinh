@@ -1,40 +1,25 @@
-<?php
-include("../config/connect.php");
-if (!$conn) {
-    echo 'Server is error';
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký</title>
+</head>
+<body>
+    <h2>Form Đăng ký</h2>
+    <form action="process.php" method="POST">
+        <label for="UserID">Tên đăng nhập:</label>
+        <input type="text" name="UserID" required><br><br>
 
+        <label for="Email">Email:</label>
+        <input type="email" name="Email" required><br><br>
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
-        // Lấy dữ liệu từ form
-        $username = trim($_POST["username"]);
-        $email = trim($_POST["email"]);
-        $password = $_POST["password"];
-        $confirm_password = $_POST["confirm_password"];
+        <label for="Password">Mật khẩu:</label>
+        <input type="password" name="Password" required><br><br>
 
-        // Kiểm tra mật khẩu khớp
-        if ($password !== $confirm_password) {
-            die("Mật khẩu không khớp.");
-        }
+        <label for="ConfirmPassword">Xác nhận mật khẩu:</label>
+        <input type="password" name="ConfirmPassword" required><br><br>
 
-        // Mã hóa mật khẩu
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        // Ghi dữ liệu vào DB (giả sử bảng users có các cột: username, email, password)
-        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-
-        $stmt = mysqli_prepare($conn, $sql);
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPassword);
-            if (mysqli_stmt_execute($stmt)) {
-                echo "Đăng ký thành công!";
-            } else {
-                echo "Lỗi khi ghi dữ liệu: " . mysqli_error($conn);
-            }
-            mysqli_stmt_close($stmt);
-        } else {
-            echo "Lỗi prepare: " . mysqli_error($conn);
-        }
-    }
-}
-
-mysqli_close($conn);
+        <button type="submit" name="register">Đăng ký</button>
+    </form>
+</body>
+</html>
