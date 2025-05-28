@@ -19,6 +19,7 @@ if (session_start() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/chatbox.css">
+    <link rel="stylesheet" href="./assets/css/carousel.css">
     <title>HỆ THỐNG TUYỂN SINH TRỰC TUYẾN</title>
 </head>
 
@@ -31,15 +32,15 @@ if (session_start() === PHP_SESSION_NONE) {
             <div class="content-l">
                 <h1 class="title">Tin Tức</h1>
                 <div class="carousel">
-                    <i class="fa-solid fa-angle-left"></i>
+                    <i class="fa-solid fa-angle-left" id="prevBtn"></i>
+                    <div class="carousel-track">
+                        <?php
+                        $sql = "SELECT * FROM tintuc ORDER BY Date DESC LIMIT 10";
+                        $result = mysqli_query($conn, $sql);
 
-                    <?php
-                    $sql = "SELECT * FROM tintuc ORDER BY Date DESC LIMIT 3";
-                    $result = mysqli_query($conn, $sql);
-
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo '
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '
                                 <div class="item-carousel">
                                     <div class="top-item">
                                         <span class="date">' . $row['Date'] . '</span>
@@ -50,10 +51,11 @@ if (session_start() === PHP_SESSION_NONE) {
                                     </div>
                                 </div>
                             ';
+                            }
                         }
-                    }
-                    ?>
-                    <i class="fa-solid fa-angle-right"></i>
+                        ?>
+                    </div>
+                    <i class="fa-solid fa-angle-right" id="nextBtn"></i>
                 </div>
                 <h1 class="title">Thông báo</h1>
                 <div class="announce">
@@ -144,8 +146,6 @@ if (session_start() === PHP_SESSION_NONE) {
                         }
                     }
                     ?>
-
-
                 </div>
             </div>
             <div class="content-r">
@@ -197,7 +197,7 @@ if (session_start() === PHP_SESSION_NONE) {
                         <?php
                         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                             if ($_SESSION['role']  == "admin") {
-                                echo '<a href = "" > Dashboard </a>';
+                                echo '<a href = "admin.php" > Dashboard </a>';
                             }
                         }
                         ?>
@@ -209,6 +209,7 @@ if (session_start() === PHP_SESSION_NONE) {
         <?php
         include("layout/footer.php");
         ?>
+        <script src="./assets/js/carousel.js"></script>
         <script src="./assets/js/chatbox.js">
         </script>
 
