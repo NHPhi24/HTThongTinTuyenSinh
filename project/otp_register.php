@@ -58,17 +58,10 @@ try {
 
     $mail->send();
     echo "Mã OTP đã được gửi tới email của bạn.";
-    echo "<a href='verify.php'>Nhập mã OTP</a>";
+    echo "<a href='otp_verify.php'>Nhập mã OTP</a>";
 } catch (Exception $e) {
     echo "Không thể gửi email. Lỗi: {$mail->ErrorInfo}";
 
-    $sql = " Insert into `login`(UserID, Name, Password, Email)
-        Values ('$CCCD','$name', '$pass', '$email')";
-
-    $res = mysqli_query($conn, $sql);
-    if ($res) {
-        echo "<script>alert('Đăng Ký Tài Khoản Thành Công!'); window.location='../assets/catalog/modal.php';</script>";
-    } else {
-        echo "Có lỗi xảy ra: " . mysqli_error($conn);
+    
     }
 }
