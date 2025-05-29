@@ -45,7 +45,11 @@
 
         <!-- Form Đăng ký -->
         <div class="formpage hidden" id="signupForm">
+<<<<<<< HEAD
             <form action="/HTThongtintuyensinh/project/otp_register.php" method="POST">
+=======
+            <form action="/HTThongtintuyensinh/project/auth/register.php" method="POST">
+>>>>>>> 672e6cdf990bcaf087bc9d9edce13808f9c125ca
                 <h2>Đăng ký</h2>
                 <div class="entryfield">
                     <span class="fa fa-user user"></span>
@@ -73,7 +77,15 @@
                 </div>
 
                 <div class="entryfield">
+<<<<<<< HEAD
                     <input type="submit" name="resgister" value="Đăng ký">
+=======
+<<<<<<< HEAD
+                    <input type="submit" name='register' value="Đăng ký">
+=======
+                    <input type="submit" name="resgister" value="Đăng ký">
+>>>>>>> a24b035fc4daf571eaab4c99e27446cdf2939b90
+>>>>>>> 672e6cdf990bcaf087bc9d9edce13808f9c125ca
                 </div>
 
                 <p class="newAccount">
