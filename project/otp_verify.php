@@ -1,22 +1,27 @@
 <?php
+include("config/connect.php");
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 session_start();
 $error = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $entered_otp = $_POST['otp'];
 
     if ($entered_otp == $_SESSION['otp']) {
-        $conn = new mysqli("localhost", "root", "", "ten_database");
         $email = $_SESSION['Email'];
         $username = $_SESSION['UserID'];
         $password = password_hash($_SESSION['Password'], PASSWORD_DEFAULT);
 
-        $stmt = $conn->prepare("INSERT INTO users (UserID, Email, Password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $email, $password);
-        if ($stmt->execute()) {
-            echo "<div class='success'>🎉 Đăng ký thành công!</div>";
-            session_destroy();
-            header("Location: dashboard.php");
-            exit;
+        $sql = " Insert into `login`(UserID, Name, Password, Email)
+        Values ('$CCCD','$name', '$pass', '$email')";
+
+    $res = mysqli_query($conn, $sql);
+    $stmt->bind_param("sss", $username, $email, $password);
+        
+    if ($stmt->execute() && $res) {
+            echo "<scipt>alert('Đăng ký thành công!');
+            window.location.href='D:\XAMPP\htdocs\HTThongTinTuyenSinh\project\dashboard.php';</script>";
+
         } else {
             $error = "Lỗi khi ghi dữ liệu.";
         }

@@ -1,4 +1,5 @@
 <?php
+include("../config/connect.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -7,22 +8,35 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
 session_start();
-include("config/connect.php");
+if (isset($_POST["resgister"])) {
+    // Lấy dữ liệu từ form
+    $CCCD = $_POST['CCCD'];
+    $name = $_POST['Name'];
+    $email = $_POST['Email'];
+    $pwd = $_POST['password'];
+    $confirm_pwd = $_POST['confirm_pwd'];
 
-//Nhận dữ liệu từ form
-$email = $_SESSION['Email'];
-$username = $_SESSION['UserID'];
-$password = password_hash($_SESSION['Password'], PASSWORD_DEFAULT);
+    $select_cccd = "select * from `login` where UserID = '$CCCD' ";
+    $result = mysqli_query($conn, $select_cccd);
+    if (mysqli_num_rows($result) > 0) {
+        echo "<script>alert('CCCD đã tồn tại'); </script>";
+    };
 
-// Tạo OTP
-$otp = rand(100000, 999999);
-$_SESSION['otp'] = $otp;
-$_SESSION['Email'] = $email;
-$_SESSION['UserID'] = $username;
-$_SESSION['Password'] = $password;
+    if ($pwd == $confirm_pwd) {
+        $pass = $pwd;
+        
+    } else {
+        echo "<script>alert('Mật khẩu không trùng khớp'); window.location='../assets/catalog/modal.php'; </script>";
+    }
+    // Tạo OTP
+    $otp = rand(100000, 999999);
+    $_SESSION['otp'] = $otp;
+    $_SESSION['Email'] = $email;
+    $_SESSION['UserID'] = $username;
+    $_SESSION['Password'] = $password;
 
-// Cấu hình gửi mail
-$mail = new PHPMailer(true);
+    // Cấu hình gửi mail
+    $mail = new PHPMailer(true);
 
 try {
     $mail->isSMTP();
@@ -47,5 +61,14 @@ try {
     echo "<a href='verify.php'>Nhập mã OTP</a>";
 } catch (Exception $e) {
     echo "Không thể gửi email. Lỗi: {$mail->ErrorInfo}";
+
+    $sql = " Insert into `login`(UserID, Name, Password, Email)
+        Values ('$CCCD','$name', '$pass', '$email')";
+
+    $res = mysqli_query($conn, $sql);
+    if ($res) {
+        echo "<script>alert('Đăng Ký Tài Khoản Thành Công!'); window.location='../assets/catalog/modal.php';</script>";
+    } else {
+        echo "Có lỗi xảy ra: " . mysqli_error($conn);
+    }
 }
-?>

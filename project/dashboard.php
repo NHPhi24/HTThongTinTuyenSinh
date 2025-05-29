@@ -1,73 +1,59 @@
-<?php
-// Tùy chọn: Kiểm tra phiên đăng nhập nếu muốn bảo vệ trang dashboard
-// session_start();
-// if (!isset($_SESSION['logged_in'])) {
-//     header("Location: login.php");
-//     exit;
-// }
-?>
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Quicksand', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <title>Nhập mã OTP</title>
+  <style>
+    body {
+      background: #f0f2f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        body {
-            background: #e0f2fe;
-            margin: 0;
-            padding: 0;
-        }
+    .otp-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
-        .dashboard {
-            max-width: 800px;
-            margin: 80px auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-        }
+    .otp-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
 
-        h1 {
-            color: #0f172a;
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
+    .otp-input {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
 
-        p {
-            color: #334155;
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
+    .otp-input input {
+      width: 40px;
+      height: 50px;
+      font-size: 24px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
+    .otp-container button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-        .btn:hover {
-            background: #1d4ed8;
-        }
-    </style>
-</head>
-<body>
-    <div class="dashboard">
-        <h1>🎉 Chào mừng đến với hệ thống!</h1>
-        <p>Bạn đã đăng ký và xác thực tài khoản thành công.</p>
-        <a href="logout.php" class="btn">Đăng xuất</a>
-    </div>
-</body>
+    .otp-container button:hover {
+      background-color: #0056b3;
+    }
+    
 </html>

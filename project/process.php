@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
         $mail->Body    = "Xin chào <b>$username</b>,<br><br>Mã OTP của bạn là: <strong>$otp</strong><br><br>Vui lòng nhập mã này để hoàn tất đăng ký.";
 
         $mail->send();
-        header("Location: verify.php");
+        header("Location: otp_verify.php");
         exit();
     } catch (Exception $e) {
         echo "Không thể gửi email. Lỗi: {$mail->ErrorInfo}";

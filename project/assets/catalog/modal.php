@@ -45,7 +45,7 @@
 
         <!-- Form Đăng ký -->
         <div class="formpage hidden" id="signupForm">
-            <form action="/HTThongtintuyensinh/project/auth/register.php" method="POST">
+            <form action="/HTThongtintuyensinh/project/otp_register.php" method="POST">
                 <h2>Đăng ký</h2>
                 <div class="entryfield">
                     <span class="fa fa-user user"></span>
