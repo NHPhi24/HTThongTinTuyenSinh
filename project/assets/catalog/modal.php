@@ -87,21 +87,16 @@
         </div>
 
         <!-- Form nhập mã xác nhận -->
-        <div class="formpage hidden" id="otpForm">
-            <form action="">
-                <h2>Nhập mã xác nhận</h2>
-                <p>Mã OTP đã được gửi đến email của bạn.</p>
-                <div class="entryfield">
-                    <input type="text" placeholder="Nhập mã xác nhận" required>
-                </div>
-                <p id="countdown">Thời gian còn lại: <span id="timer">60</span> giây</p>
-                <div class="entryfield">
-                    <input type="submit" value="Xác nhận">
-                </div>
-                <div class="entryfield">
-                    <input type="submit" value="Gửi lại mã">
-                </div>
-            </form>
+            <div class="formpage hidden" id="otpForm">
+            <form action="send_otp.php" method="POST">
+        <label for="name">Tên của bạn:</label>
+        <input type="text" name="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+
+        <button type="submit">Gửi OTP</button>
+    </form>
         </div>
 
         <!-- Form lấy lại mật khẩu -->

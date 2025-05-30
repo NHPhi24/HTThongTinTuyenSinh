@@ -29,40 +29,39 @@ if (isset($_POST["resgister"])) {
     } else {
         echo "<script>alert('Mật khẩu không trùng khớp'); window.location='../assets/catalog/modal.php'; </script>";
     }
-    // Tạo OTP
-    $otp = rand(100000, 999999);
-    $_SESSION['otp'] = $otp;
-    $_SESSION['Email'] = $email;
-    $_SESSION['UserID'] = $CCCD;
-    $_SESSION['Password'] = $pass;
+  // Tạo OTP
+$otp = rand(100000, 999999);
+$_SESSION['otp'] = $otp;
+$_SESSION['Email'] = $email;
+$_SESSION['UserID'] = $CCCD;
+$_SESSION['Password'] = $pass;
 
-    // Cấu hình gửi mail
-    $mail = new PHPMailer(true);
+$mail = new PHPMailer(true);
 
 try {
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'duyquynguyen2003@gmail.com';
-    $mail->Password = 'zdnc vpzi izqt ugfs';
-    $mail->SMTPSecure = 'tls'; // hoặc 'ssl'
-    $mail->Port = 587; // hoặc 465 nếu dùng ssl
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'duyquynguyen2003@gmail.com';
+    $mail->Password   = 'zdnc vpzi izqt ugfs';
+    $mail->Port       = 587;
 
     $mail->setFrom('test@example.com', 'Mailer');
-    $mail->addAddress('duyquynguyen2003@gmail.com');
+    $mail->addAddress($email); 
     $mail->isHTML(true);
-    
-    // Nội dung
-    $mail->isHTML(true);
+
+    // Gửi nội dung OTP
     $mail->Subject = 'Xác thực OTP';
-    $mail->Body    = "Xin chào $username,<br><br>Mã OTP của bạn là: <b>$otp</b><br><br>Vui lòng nhập mã này để hoàn tất đăng ký.";
+    $mail->Body    = "
+        <p>Xin chào <b>$name</b>,</p>
+        <p>Mã OTP của bạn là: <strong style='font-size: 20px;'>$otp</strong></p>
+        <p>Vui lòng nhập mã này để hoàn tất đăng ký.</p>
+    ";
 
     $mail->send();
-    echo "Mã OTP đã được gửi tới email của bạn.";
+    echo "✅ Mã OTP đã được gửi tới email: <b>$email</b><br>";
     echo "<a href='otp_verify.php'>Nhập mã OTP</a>";
 } catch (Exception $e) {
-    echo "Không thể gửi email. Lỗi: {$mail->ErrorInfo}";
-
-    
-    }
+    echo "❌ Không thể gửi email. Lỗi: {$mail->ErrorInfo}";
 }
+};
