@@ -1,4 +1,5 @@
 <?php
+include "functions.php";
 if (session_start() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -25,6 +26,19 @@ if (session_start() === PHP_SESSION_NONE) {
     .footer {
         bottom: 0;
     }
+
+    .dkxt {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .nv,
+    .nganh,
+    .truong,
+    .tohop {
+        margin: 0 6px;
+    }
     </style>
 </head>
 
@@ -35,37 +49,92 @@ if (session_start() === PHP_SESSION_NONE) {
             <div class="content-l">
                 <div class="DKXT">
                     <div class="container">
-                        <h2>Đăng ký Nguyện vọng</h2>
-                        <?php
-                        $sql = "Select * from ";
-                        ?>
-                        <!-- Ô nhập CCCD -->
+                        <form name="DKNV" action="" method="post">
+                            <h2>Đăng ký Nguyện vọng</h2>
+
+                            <!-- Ô nhập CCCD -->
+                            <?php
+                            echo '
                         <div class="form-group">
                             <label for="cccd">CCCD:</label>
-                            <input type="number" id="cccd" placeholder="Nhập số CCCD" required />
+                            <input type="number" name="cccd" value= "' . $_SESSION['UserID'] . '" id="cccd" placeholder="Nhập số CCCD" required />
                         </div>
+                        ';
+                            ?>
 
-                        <!-- Tiêu đề bảng -->
-                        <div class="table-header">
-                            <div>Thứ tự</div>
-                            <div>Trường</div>
-                            <div>Ngành</div>
-                            <div>Tổ hợp môn</div>
-                            <div>Chỉnh sửa</div>
-                        </div>
 
-                        <div id="industry-list" class="industry-list"></div>
+                            <!-- Tiêu đề bảng -->
+                            <div class="table-header">
+                                <div>Thứ tự</div>
+                                <div>Trường</div>
+                                <div>Ngành</div>
+                                <div>Tổ hợp môn</div>
+                                <div>Chỉnh sửa</div>
+                            </div>
 
-                        <button id="add-btn" class="btn" onclick="addRow()">
-                            <i class="fa fa-plus"></i> Thêm nguyện vọng
-                        </button>
+                            <!-- Danh sách nguyện vọng -->
+                            <div id="industry-list" class="industry-list"></div>
+
+                            <!-- Nút thêm nguyện vọng -->
+                            <button id="add-btn" class="btn">
+                                <i class="fa fa-plus"></i> Thêm nguyện vọng
+                            </button>
+                            <!-- Nút lưu tất cả nguyện vọng -->
+                            <button id="save-all-btn" class="btn">
+                                <i class="fa fa-save"></i> Lưu
+                            </button>
                     </div>
+                    </form>
                 </div>
             </div>
+
+            <!-- Template dòng nguyện vọng -->
+            <template id="row-template">
+                <div class="industry-row">
+                    <!-- Thứ tự -->
+                    <form class="dkxt" action="" method="POST">
+                        <select name="STT_NV" class="nv">
+                            <option value="">Chọn thứ tự nguyện vọng</option>
+                        </select>
+
+                        <!-- Trường -->
+                        <select name="countries" class="truong" onclick="getCities(this.value)">
+                            <?php
+                            $countries = getCountries();
+                            foreach ($countries as $country) {
+                            ?>
+                            <option value="<?php echo $country['MaTruong'] ?>">
+                                <?php echo $country['TenTruong'] ?>
+                            </option>
+
+                            <?php
+                            }
+                            ?>
+                        </select>
+
+                        <!-- Ngành -->
+                        <select name="cities" class="nganh" disabled>
+                            <option value="">Chọn ngành</option>
+                        </select>
+
+                        <!-- Tổ hợp môn -->
+                        <select name="Tohop" class="tohop" disabled>
+                            <option value="">Chọn tổ hợp</option>
+                        </select>
+
+                        <!-- Nút CRUD -->
+                        <div class="crud">
+                            <button class="btn btn-save"><i class="fa-solid fa-check"></i></button>
+                            <button class="btn btn-set" style="display:none;"><i class="fa-solid fa-gear"></i></button>
+                            <button class="btn btn-del"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </template>
             <div class="content-r">
                 <div class="login">
                     <h1 class="title">Đăng nhập</h1>
-                    <form action="" method="post">
+                    <form action="" method="get">
                         <?php
                         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                             echo '<div class="account">
@@ -114,8 +183,9 @@ if (session_start() === PHP_SESSION_NONE) {
         <?php
         include("layout/footer.php");
         ?>
-
         <script src="./assets/js/DKXT.js"></script>
+
+        <!-- <script src="./assets/js/xulyDKXT.js"></script> -->
         <script src="./assets/js/chatbox.js"></script>
 </body>
 

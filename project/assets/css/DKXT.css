@@ -131,3 +131,22 @@ h2 {
 #add-btn:hover {
     background-color: #1e7e34;
 }
+
+
+#save-all-btn {
+    margin-top: 10px;
+    background-color: #28a745;
+    width: 100%;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
