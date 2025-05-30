@@ -2,22 +2,19 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["CCCD"];
-    $email = $_POST["email"];
+    $username = $_POST["CCCD"] ?? '';
+    $email = $_POST["email"] ?? '';
 
-    // Tạo mã OTP ngẫu nhiên
-    $otp = rand(100000, 999999);
+    if (empty($email)) {
+        die("Email không được để trống.");
+    }
 
     // Lưu thông tin vào session
-    $_SESSION["username"] = $_POST['CCCD'];
-    $_SESSION["otp"] =$_POST['otp'];
-    $_SESSION['email'] = $_POST['email'];
+    $_SESSION["username"] = $username;
+    $_SESSION['email'] = $email;
 
-    // Gửi OTP qua email
-    include 'otp_send.php';
-
-    // Chuyển sang trang nhập OTP
-    header("Location: otp_verify.php");
+    // Chuyển sang file otp_send.php để gửi OTP
+    header("Location: otp_send.php");
     exit();
 }
 ?>
