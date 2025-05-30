@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const nganhSelect = row.querySelector('.nganh');
         const tohopSelect = row.querySelector('.tohop');
 
+        truongSelect.innerHTML = "<option disabled selected>--Chọn trường--</option>";
+          const uniqueTruongs = [...new Set(nganhData.map(n => n.TenTruong))];
+          uniqueTruongs.forEach(tr => {
+              const opt = document.createElement("option");
+              opt.value = tr;
+              opt.textContent = tr;
+              truongSelect.appendChild(opt);
+          });
+
         truongSelect.addEventListener("change", function () {
             const tenTruong = this.value;
             const filteredNganh = nganhData.filter(n => n.TenTruong === tenTruong);
