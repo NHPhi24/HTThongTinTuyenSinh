@@ -89,22 +89,13 @@ if (session_start() === PHP_SESSION_NONE) {
 
                     <!-- Ngành -->
                     <select class="nganh">
-                        <?php
-                        $result = $conn->query("SELECT DISTINCT Ten_Nganh FROM nganhhoc");
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='{$row['Ten_Nganh']}'>{$row['Ten_Nganh']}</option>";
-                        }
-                        ?>
+                        <option disabled selected>--Chọn ngành--</option>
                     </select>
+
 
                     <!-- Tổ hợp môn -->
                     <select class="tohop">
-                        <?php
-                        $result = $conn->query("SELECT DISTINCT Ten_To_Hop FROM tohop");
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='{$row['Ten_To_Hop']}'>{$row['Ten_To_Hop']}</option>";
-                        }
-                        ?>
+                        <option disabled selected>--Chọn tổ hợp--</option>
                     </select>
 
                     <!-- Nút CRUD -->
