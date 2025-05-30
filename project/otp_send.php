@@ -2,36 +2,34 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
-//require 'PHPMailer/src/PHPMailer.php';
-//require 'PHPMailer/src/SMTP.php';
-//require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 
 try {
-    // Server settings
-        $mail = new PHPMailer(true);
-
     $mail->isSMTP();
-    $mail->Host       = 'sandbox.smtp.mailtrap.io';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'a04e22f2eaaa31';
-    $mail->Password   = '4a149394d8561e';
-    $mail->Port       = 587;
+    $mail->Host = 'smtp.example.com';  // Sửa lại cho đúng SMTP server của bạn
+    $mail->SMTPAuth = true;
+    $mail->Username = 'your_email@example.com';  // Email gửi OTP
+    $mail->Password = 'your_password';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-    $mail->setFrom('test@example.com', 'Mailer');
-    $mail->addAddress('duyquynguyen2003@gmail.com');
+    $mail->setFrom('your_email@example.com', 'OTP Service');
+    $mail->addAddress($_SESSION["email"]);
+
     $mail->isHTML(true);
+    $mail->Subject = 'Your OTP Code';
+    $mail->Body    = 'Mã OTP của bạn là: <b>' . $_SESSION["otp"] . '</b>';
 
-    // Nội dung
-    $otp = rand(100000, 999999);
-    $mail->isHTML(true);
-    $mail->Subject = 'Mã OTP của bạn';
-    $mail->Body    = "<h3>OTP của bạn là: <strong>$otp</strong></h3>";
-
-    $mail->send();
-    echo "Đã gửi OTP thành công: $otp";
+    if (!$mail->send()) {
+        echo 'Lỗi gửi email: ' . $mail->ErrorInfo;
+        exit();
+    }
 } catch (Exception $e) {
     echo "Gửi mail thất bại. Lỗi: {$mail->ErrorInfo}";
-};
+    exit();
+}
+?>
