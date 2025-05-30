@@ -72,22 +72,33 @@ document.addEventListener('DOMContentLoaded', function () {
             const tenNganh = this.value;
             const truong = truongSelect.value;
 
+            // Tìm đúng ngành theo tên ngành và tên trường
             const nganh = nganhData.find(n => n.Ten_Nganh === tenNganh && n.TenTruong === truong);
 
+            // Reset tổ hợp
             tohopSelect.innerHTML = "<option disabled selected>--Chọn tổ hợp--</option>";
 
-            if (nganh) {
-                const maToHopArray = nganh.Ma_To_Hop.split(';').map(s => s.trim());
-                const filteredTohop = tohopData.filter(t => maToHopArray.includes(t.Ma_To_Hop));
+            if (nganh && nganh.Ma_To_Hop) {
+                // Tách danh sách mã tổ hợp
+                const maToHopArray = nganh.Ma_To_Hop.split(';').map(ma => ma.trim().toUpperCase());
 
-                filteredTohop.forEach(t => {
+                // Lọc tổ hợp có mã trùng khớp
+                const filteredTohop = tohopData.filter(tohop => maToHopArray.includes(tohop.Ma_To_Hop.toUpperCase()));
+
+                // Thêm option hiển thị Tên tổ hợp
+                filteredTohop.forEach(tohop => {
                     const opt = document.createElement("option");
-                    opt.value = t.Ten_To_Hop;
-                    opt.textContent = t.Ten_To_Hop;
+                    opt.value = tohop.Ma_To_Hop;
+                    opt.textContent = `${tohop.Ma_To_Hop} (${tohop.Ten_To_Hop})`;
                     tohopSelect.appendChild(opt);
                 });
+
+                tohopSelect.disabled = false;
+            } else {
+                tohopSelect.disabled = true;
             }
         });
+
 
 
         document.getElementById('industry-list').appendChild(row);
