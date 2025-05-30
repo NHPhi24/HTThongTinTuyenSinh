@@ -1,11 +1,12 @@
 <?php
-include("../config/connect.php");
+include("config/connect.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
+require 'vendor/autoload.php';
 
 session_start();
 if (isset($_POST["resgister"])) {
@@ -32,25 +33,25 @@ if (isset($_POST["resgister"])) {
     $otp = rand(100000, 999999);
     $_SESSION['otp'] = $otp;
     $_SESSION['Email'] = $email;
-    $_SESSION['UserID'] = $username;
-    $_SESSION['Password'] = $password;
+    $_SESSION['UserID'] = $CCCD;
+    $_SESSION['Password'] = $pass;
 
     // Cấu hình gửi mail
     $mail = new PHPMailer(true);
 
 try {
     $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com';  // Host SMTP
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'duyquynguyen2003@gmail.com';  // Tài khoản Gmail
-    $mail->Password   = 'duyquy2472003';     // Mật khẩu ứng dụng Gmail
-    $mail->SMTPSecure = 'tls';
-    $mail->Port       = 587;
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'duyquynguyen2003@gmail.com';
+    $mail->Password = 'zdnc vpzi izqt ugfs';
+    $mail->SMTPSecure = 'tls'; // hoặc 'ssl'
+    $mail->Port = 587; // hoặc 465 nếu dùng ssl
 
-    // Người gửi và người nhận
-    $mail->setFrom('duyquynguyen2003@gmail.com', 'HTThongtintuyensinh');
-    $mail->addAddress($email);
-
+    $mail->setFrom('test@example.com', 'Mailer');
+    $mail->addAddress('duyquynguyen2003@gmail.com');
+    $mail->isHTML(true);
+    
     // Nội dung
     $mail->isHTML(true);
     $mail->Subject = 'Xác thực OTP';
