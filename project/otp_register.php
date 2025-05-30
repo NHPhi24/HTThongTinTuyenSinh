@@ -2,18 +2,16 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["CCCD"] ?? '';
-    $email = $_POST["email"] ?? '';
+    $_SESSION["username"] = $_POST["Name"] ?? '';
+    $_SESSION["CCCD"] = $_POST["CCCD"] ?? '';
+    $_SESSION["Email"] = $_POST["Email"] ?? '';
+    $_SESSION["password"] = $_POST["password"] ?? '';
+    $_SESSION["confirm_pwd"] = $_POST["confirm_pwd"] ?? '';
 
-    if (empty($email)) {
+    if (empty($_SESSION["Email"])) {
         die("Email không được để trống.");
     }
 
-    // Lưu thông tin vào session
-    $_SESSION["username"] = $username;
-    $_SESSION['email'] = $email;
-
-    // Chuyển sang file otp_send.php để gửi OTP
     header("Location: otp_send.php");
     exit();
 }

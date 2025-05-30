@@ -71,7 +71,7 @@
                     <span class="fa fa-eye-slash eye"></span>
                 </div>
                 <div class="entryfield">
-                    <input type="submit" name="register" value="Đăng ký" />
+                    <input type="submit"value="Đăng ký" />
                 </div>
 
                 <p class="newAccount">
