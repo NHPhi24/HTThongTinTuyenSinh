@@ -49,7 +49,7 @@ if (session_start() === PHP_SESSION_NONE) {
             <div class="content-l">
                 <div class="DKXT">
                     <div class="container">
-                        <form name="DKNV" action="" method="post">
+                        <form name="DKNV" action="<?= ROOT_URL?>auth/" method="post">
                             <h2>Đăng ký Nguyện vọng</h2>
 
                             <!-- Ô nhập CCCD -->
