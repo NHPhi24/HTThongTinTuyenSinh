@@ -55,11 +55,11 @@ if (session_start() === PHP_SESSION_NONE) {
                             <!-- Ô nhập CCCD -->
                             <?php
                             echo '
-                        <div class="form-group">
-                            <label for="cccd">CCCD:</label>
-                            <input type="number" name="cccd" value= "' . $_SESSION['UserID'] . '" id="cccd" placeholder="Nhập số CCCD" required />
-                        </div>
-                        ';
+                                <div class="form-group">
+                                    <label for="cccd">CCCD:</label>
+                                    <input type="number" name="cccd" value= "' . $_SESSION['UserID'] . '" id="cccd" placeholder="Nhập số CCCD" required />
+                                </div>
+                                ';
                             ?>
 
 
@@ -76,11 +76,11 @@ if (session_start() === PHP_SESSION_NONE) {
                             <div id="industry-list" class="industry-list"></div>
 
                             <!-- Nút thêm nguyện vọng -->
-                            <button id="add-btn" class="btn">
+                            <button id="add-btn" class="btn" type="button">
                                 <i class="fa fa-plus"></i> Thêm nguyện vọng
                             </button>
                             <!-- Nút lưu tất cả nguyện vọng -->
-                            <button id="save-all-btn" class="btn">
+                            <button id="save-all-btn" class="btn" type="submit" name="save_all">
                                 <i class="fa fa-save"></i> Lưu
                             </button>
                     </div>
@@ -102,12 +102,7 @@ if (session_start() === PHP_SESSION_NONE) {
 
                     <!-- Trường -->
                     <select class="truong">
-                        <?php
-                        $result = $conn->query("SELECT DISTINCT TenTruong FROM truong");
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='{$row['TenTruong']}'>{$row['TenTruong']}</option>";
-                        }
-                        ?>
+                        
                     </select>
 
                     <!-- Ngành -->
@@ -123,9 +118,9 @@ if (session_start() === PHP_SESSION_NONE) {
 
                     <!-- Nút CRUD -->
                     <div class="crud">
-                        <button class="btn btn-save"><i class="fa-solid fa-check"></i></button>
-                        <button class="btn btn-set" style="display:none;"><i class="fa-solid fa-gear"></i></button>
-                        <button class="btn btn-del"><i class="fa-solid fa-xmark"></i></button>
+                        <button class="btn btn-save" type="button"><i class="fa-solid fa-check"></i></button>
+                        <button class="btn btn-set" style="display:none;" type="button"><i class="fa-solid fa-gear"></i></button>
+                        <button class="btn btn-del" type="button"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
             </template>
