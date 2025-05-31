@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    
+
     let nganhData = [];
     let tohopData = [];
-
+    // hàm bất đồng bộ để lấy dữ liệu ngành và tổ hợp
     async function fetchData() {
         const response = await fetch('./auth/api_nganh_tohop.php');
         const data = await response.json();
@@ -44,18 +44,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const tohopSelect = row.querySelector('.tohop');
 
         truongSelect.innerHTML = "<option disabled selected>--Chọn trường--</option>";
-          const uniqueTruongs = [...new Set(nganhData.map(n => n.TenTruong))];
-          uniqueTruongs.forEach(tr => {
-              const opt = document.createElement("option");
-              opt.value = tr;
-              opt.textContent = tr;
-              truongSelect.appendChild(opt);
-          });
+        const uniqueTruongs = [...new Set(nganhData.map(n => n.TenTruong))];
+        uniqueTruongs.forEach(tr => {
+            const opt = document.createElement("option");
+            opt.value = tr;
+            opt.textContent = tr;
+            truongSelect.appendChild(opt);
+        });
 
         truongSelect.addEventListener("change", function () {
             const tenTruong = this.value;
             const filteredNganh = nganhData.filter(n => n.TenTruong === tenTruong);
-            
+
             nganhSelect.innerHTML = "<option disabled selected>--Chọn ngành--</option>";
             const uniqueNganhs = [...new Set(filteredNganh.map(n => n.Ten_Nganh))];
             uniqueNganhs.forEach(tn => {
@@ -99,14 +99,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-
-
         document.getElementById('industry-list').appendChild(row);
     }
 
     // Load dữ liệu rồi thêm dòng đầu tiên
     fetchData();
 
-    // Mỗi lần bấm nút "Thêm nguyện vọng" chỉ gọi addRow() một lần thôi
     document.getElementById('add-btn').addEventListener('click', addRow);
 });

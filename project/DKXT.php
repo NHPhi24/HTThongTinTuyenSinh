@@ -92,47 +92,41 @@ if (session_start() === PHP_SESSION_NONE) {
             <template id="row-template">
                 <div class="industry-row">
                     <!-- Thứ tự -->
-                    <form class="dkxt" action="" method="POST">
-                        <select name="STT_NV" class="nv">
-                            <?php for ($i = 1; $i <= 100; $i++): ?>
-                            <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>">
-                                <?= str_pad($i, 2, "0", STR_PAD_LEFT) ?></option>
-                            <?php endfor; ?>
-                        </select>
+                    <select name="STT_NV" class="nv">
+                        <?php for ($i = 1; $i <= 30; $i++): ?>
+                        <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>">
+                            <?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>
+                        </option>
+                        <?php endfor; ?>
+                    </select>
 
-                        <!-- Trường -->
-                        <select name="countries" class="truong" onclick="getCities(this.value)">
-                            <?php
-                            $countries = getCountries();
-                            foreach ($countries as $country) {
-                            ?>
-                            <option value="<?php echo $country['MaTruong'] ?>">
-                                <?php echo $country['TenTruong'] ?>
-                            </option>
+                    <!-- Trường -->
+                    <select class="truong">
+                        <?php
+                        $result = $conn->query("SELECT DISTINCT TenTruong FROM truong");
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='{$row['TenTruong']}'>{$row['TenTruong']}</option>";
+                        }
+                        ?>
+                    </select>
 
-                            <?php
-                            }
-                            ?>
-                        </select>
-
-                        <!-- Ngành -->
-                        <select class="nganh">
-                            <option disabled selected>--Chọn ngành--</option>
-                        </select>
+                    <!-- Ngành -->
+                    <select class="nganh">
+                        <option disabled selected>--Chọn ngành--</option>
+                    </select>
 
 
-                        <!-- Tổ hợp môn -->
-                        <select class="tohop">
-                            <option disabled selected>--Chọn tổ hợp--</option>
-                        </select>
+                    <!-- Tổ hợp môn -->
+                    <select class="tohop">
+                        <option disabled selected>--Chọn tổ hợp--</option>
+                    </select>
 
-                        <!-- Nút CRUD -->
-                        <div class="crud">
-                            <button class="btn btn-save"><i class="fa-solid fa-check"></i></button>
-                            <button class="btn btn-set" style="display:none;"><i class="fa-solid fa-gear"></i></button>
-                            <button class="btn btn-del"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
-                    </form>
+                    <!-- Nút CRUD -->
+                    <div class="crud">
+                        <button class="btn btn-save"><i class="fa-solid fa-check"></i></button>
+                        <button class="btn btn-set" style="display:none;"><i class="fa-solid fa-gear"></i></button>
+                        <button class="btn btn-del"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
                 </div>
             </template>
             <div class="content-r">
