@@ -107,3 +107,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('add-btn').addEventListener('click', addRow);
 });
+

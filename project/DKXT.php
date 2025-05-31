@@ -49,7 +49,7 @@ if (session_start() === PHP_SESSION_NONE) {
             <div class="content-l">
                 <div class="DKXT">
                     <div class="container">
-                        <form name="DKNV" action="<?= ROOT_URL?>auth/" method="post">
+                        <form name="DKNV" action="<?= ROOT_URL ?>auth/xulyDKXT.php" method="post">
                             <h2>Đăng ký Nguyện vọng</h2>
 
                             <!-- Ô nhập CCCD -->
@@ -61,7 +61,6 @@ if (session_start() === PHP_SESSION_NONE) {
                                 </div>
                                 ';
                             ?>
-
 
                             <!-- Tiêu đề bảng -->
                             <div class="table-header">
@@ -92,7 +91,7 @@ if (session_start() === PHP_SESSION_NONE) {
             <template id="row-template">
                 <div class="industry-row">
                     <!-- Thứ tự -->
-                    <select name="STT_NV" class="nv">
+                    <select name="STT_NV[]" class="nv">
                         <?php for ($i = 1; $i <= 30; $i++): ?>
                         <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>">
                             <?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>
@@ -101,26 +100,30 @@ if (session_start() === PHP_SESSION_NONE) {
                     </select>
 
                     <!-- Trường -->
-                    <select class="truong">
-                        
+                    <select name="Truongs[]" class="truong">
+
                     </select>
 
                     <!-- Ngành -->
-                    <select class="nganh">
+                    <select name="Nganhs[]" class="nganh">
                         <option disabled selected>--Chọn ngành--</option>
                     </select>
 
 
                     <!-- Tổ hợp môn -->
-                    <select class="tohop">
+                    <select name="ToHop[]" class="tohop">
                         <option disabled selected>--Chọn tổ hợp--</option>
                     </select>
 
                     <!-- Nút CRUD -->
                     <div class="crud">
-                        <button class="btn btn-save" type="button"><i class="fa-solid fa-check"></i></button>
-                        <button class="btn btn-set" style="display:none;" type="button"><i class="fa-solid fa-gear"></i></button>
-                        <button class="btn btn-del" type="button"><i class="fa-solid fa-xmark"></i></button>
+                        <button class="btn btn-save" name="add_dkxt" type="button"><i
+                                class="fa-solid fa-check"></i></button>
+                        <button class="btn btn-set" name="set_dkxt" style="display:none;" type="button"><i
+                                class="fa-solid fa-gear"></i></button>
+                        <button class="btn btn-del" name="del_dkxt" type="button"><i
+                                class="fa-solid fa-xmark"></i></button>
+
                     </div>
                 </div>
             </template>
