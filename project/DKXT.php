@@ -71,9 +71,9 @@ if (session_start() === PHP_SESSION_NONE) {
             <template id="row-template">
                 <div class="industry-row">
                     <!-- Thứ tự -->
-                    <select class="nv">
-                        <?php for ($i = 1; $i <= 10; $i++): ?>
-                            <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>"><?= str_pad($i, 2, "0", STR_PAD_LEFT) ?></option>
+                    <select name="STT_NV" class="nv">
+                        <?php for ($i = 1; $i <= 30; $i++): ?>
+                            <option value="<?= str_pad($i, 2,"0", STR_PAD_LEFT) ?>"><?= str_pad($i, 2, "0", STR_PAD_LEFT) ?></option>
                         <?php endfor; ?>
                     </select>
 

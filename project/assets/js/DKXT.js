@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     let nganhData = [];
     let tohopData = [];
-
+    // hàm bất đồng bộ để lấy dữ liệu ngành và tổ hợp
     async function fetchData() {
         const response = await fetch('./auth/api_nganh_tohop.php');
         const data = await response.json();
@@ -99,14 +99,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-
-
         document.getElementById('industry-list').appendChild(row);
     }
 
     // Load dữ liệu rồi thêm dòng đầu tiên
     fetchData();
 
-    // Mỗi lần bấm nút "Thêm nguyện vọng" chỉ gọi addRow() một lần thôi
     document.getElementById('add-btn').addEventListener('click', addRow);
 });
