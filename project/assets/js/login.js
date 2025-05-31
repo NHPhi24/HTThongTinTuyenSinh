@@ -1,65 +1,66 @@
-// Chuyển đổi giữa các form
+// ----- 1. Xử lý chuyển đổi form theo URL và click -----
 const urlParams = new URLSearchParams(window.location.search);
 const formType = urlParams.get("form");
 
-// Thêm vào các form .hidden để ẩn tất cả các form
 function hideAllForms() {
-    document.getElementById("loginForm").classList.add("hidden");
-    document.getElementById("signupForm").classList.add("hidden");
-    document.getElementById("forgotPwForm").classList.add("hidden");
-    document.getElementById("otpForm").classList.add("hidden");
-    document.getElementById("changePwForm").classList.add("hidden");
+    const forms = ["loginForm", "signupForm", "forgotPwForm", "otpForm", "changePwForm"];
+    forms.forEach(id => {
+        const form = document.getElementById(id);
+        if (form) form.classList.add("hidden");
+    });
 }
 
 function showForm(formId) {
     hideAllForms();
-    document.getElementById(formId).classList.remove("hidden");
+    const form = document.getElementById(formId);
+    if (form) form.classList.remove("hidden");
 }
 
-// Hiển thị form theo URL ban đầu
+// Hiển thị form theo URL
 switch (formType) {
-    case "login":
-        showForm("loginForm");
-        break;
-    case "signup":
-        showForm("signupForm");
-        break;
-    case "changePw":
-        showForm("changePwForm");
-        break;
-    default:
-        showForm("loginForm");
+    case "login": showForm("loginForm"); break;
+    case "signup": showForm("signupForm"); break;
+    case "changePw": showForm("changePwForm"); break;
+    default: showForm("loginForm"); break;
 }
 
-// Giao diện chuyển form bằng click dòng chữ
-document.getElementById("toggle-signup").addEventListener("click", () => showForm("signupForm"));
-document.getElementById("toggle-signin").addEventListener("click", () => showForm("loginForm"));
-document.getElementById("toggle-forgetPw").addEventListener("click", () => showForm("forgotPwForm"));
-document.getElementById("back-to-login").addEventListener("click", () => showForm("loginForm"));
-
-
-document.getElementById("back-to-index").addEventListener("click", () => {
-    window.location.href = "/HTThongtintuyensinh/project/index.php"; // Đường dẫn đến trang chủ
+// Các nút chuyển form
+document.getElementById("toggle-signup")?.addEventListener("click", () => showForm("signupForm"));
+document.getElementById("toggle-signin")?.addEventListener("click", () => showForm("loginForm"));
+document.getElementById("toggle-forgetPw")?.addEventListener("click", () => showForm("forgotPwForm"));
+document.getElementById("back-to-login")?.addEventListener("click", () => showForm("loginForm"));
+document.getElementById("back-to-index")?.addEventListener("click", () => {
+    window.location.href = "/HTThongtintuyensinh/project/index.php";
 });
 
-// Chức năng ẩn hiển mật khẩu
-const eyeIcon = document.querySelector('.eye');
-const passwordInput = document.querySelector('input[type="password"]');
-
-// Thêm sự kiện click vào icon mắt
-eyeIcon.addEventListener('click', function () {
-    // Kiểm tra nếu mật khẩu đang bị ẩn
-    if (passwordInput.type === 'password') {
-        // Thay đổi type thành text để hiển thị mật khẩu
-        passwordInput.type = 'text';
-        // Thay đổi icon thành mắt mở
-        eyeIcon.classList.remove('fa-eye-slash');
-        eyeIcon.classList.add('fa-eye');
-    } else {
-        // Thay đổi type thành password để ẩn mật khẩu
-        passwordInput.type = 'password';
-        // Thay đổi icon thành mắt nhắm
-        eyeIcon.classList.remove('fa-eye');
-        eyeIcon.classList.add('fa-eye-slash');
-    }
+// ----- 2. Ẩn/hiện mật khẩu cho tất cả các field -----
+document.querySelectorAll('.eye').forEach(eyeIcon => {
+    eyeIcon.addEventListener('click', () => {
+        const passwordInput = eyeIcon.previousElementSibling;
+        if (passwordInput && passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        }
+    });
 });
+
+// ----- 3. Countdown OTP nếu có form OTP -----
+const timerEl = document.getElementById("timer");
+if (timerEl) {
+    let timeLeft = 60;
+    const countdown = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            timerEl.textContent = "Hết thời gian";
+        }
+    }, 1000);
+}
+// ----- 4. Hiển thị thông báo lỗi nếu có -----
+const errorMessage = urlParams.get("error");
