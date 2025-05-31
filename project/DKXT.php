@@ -94,7 +94,10 @@ if (session_start() === PHP_SESSION_NONE) {
                     <!-- Thứ tự -->
                     <form class="dkxt" action="" method="POST">
                         <select name="STT_NV" class="nv">
-                            <option value="">Chọn thứ tự nguyện vọng</option>
+                            <?php for ($i = 1; $i <= 100; $i++): ?>
+                            <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>">
+                                <?= str_pad($i, 2, "0", STR_PAD_LEFT) ?></option>
+                            <?php endfor; ?>
                         </select>
 
                         <!-- Trường -->
@@ -113,13 +116,14 @@ if (session_start() === PHP_SESSION_NONE) {
                         </select>
 
                         <!-- Ngành -->
-                        <select name="cities" class="nganh" disabled>
-                            <option value="">Chọn ngành</option>
+                        <select class="nganh">
+                            <option disabled selected>--Chọn ngành--</option>
                         </select>
 
+
                         <!-- Tổ hợp môn -->
-                        <select name="Tohop" class="tohop" disabled>
-                            <option value="">Chọn tổ hợp</option>
+                        <select class="tohop">
+                            <option disabled selected>--Chọn tổ hợp--</option>
                         </select>
 
                         <!-- Nút CRUD -->

@@ -1,142 +1,112 @@
 document.addEventListener('DOMContentLoaded', function () {
-  function addRow() {
-    const template = document.getElementById('row-template');
-    const clone = template.content.cloneNode(true);
-    const row = clone.querySelector('.industry-row');
+    
+    let nganhData = [];
+    let tohopData = [];
 
-    const selects = row.querySelectorAll('select');
-    const btnSave = row.querySelector('.btn-save');
-    const btnEdit = row.querySelector('.btn-set');
-    const btnDel = row.querySelector('.btn-del');
+    async function fetchData() {
+        const response = await fetch('./auth/api_nganh_tohop.php');
+        const data = await response.json();
+        nganhData = data.nganhs;
+        tohopData = data.tohops;
 
-    btnSave.onclick = () => {
-      selects.forEach(s => s.disabled = true);
-      btnSave.style.display = 'none';
-      btnEdit.style.display = 'inline-block';
-    };
-
-    btnEdit.onclick = () => {
-      selects.forEach(s => s.disabled = false);
-      btnEdit.style.display = 'none';
-      btnSave.style.display = 'inline-block';
-    };
-
-    btnDel.onclick = () => row.remove();
-
-    document.getElementById('industry-list').appendChild(row);
-  }
-
-  // Thêm một dòng mặc định sau khi DOM đã sẵn sàng
-  addRow();
-
-  // Gắn hàm addRow vào nút bấm
-  document.getElementById('add-btn').addEventListener('click', addRow);
-
-  document.getElementById('save-all-btn').addEventListener('click', function () {
-    const cccd = document.getElementById('cccd').value.trim();
-    if (!cccd) {
-      alert("Vui lòng nhập CCCD.");
-      return;
+        // Thêm 1 dòng mặc định khi dữ liệu đã load xong
+        addRow();
     }
 
-    const rows = document.querySelectorAll('#industry-list .industry-row');
-    const data = [];
+    function addRow() {
+        const template = document.getElementById('row-template');
+        const clone = template.content.cloneNode(true);
+        const row = clone.querySelector('.industry-row');
 
-    rows.forEach(row => {
-      const nv = row.querySelector('.nv').value;
-      const truong = row.querySelector('.truong').value;
-      const nganh = row.querySelector('.nganh').value;
-      const tohop = row.querySelector('.tohop').value;
+        const selects = row.querySelectorAll('select');
+        const btnSave = row.querySelector('.btn-save');
+        const btnEdit = row.querySelector('.btn-set');
+        const btnDel = row.querySelector('.btn-del');
 
-      data.push({
-        Nguyen_Vong: nv,
-        TenTruong: truong,
-        Ten_Nganh: nganh,
-        Ten_To_Hop: tohop
-      });
-    });
+        btnSave.onclick = () => {
+            selects.forEach(s => s.disabled = true);
+            btnSave.style.display = 'none';
+            btnEdit.style.display = 'inline-block';
+        };
 
-    // Gửi dữ liệu qua PHP bằng fetch/AJAX
-    fetch('luu_nguyenvong.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cccd, nguyệnvong: data })
-    })
-      .then(res => res.text())
-      .then(data => {
-        alert(data); // Hoặc hiển thị popup thông báo thành công
-      })
-      .catch(err => {
-        console.error(err);
-        alert("Lỗi khi lưu!");
-      });
-  });
+        btnEdit.onclick = () => {
+            selects.forEach(s => s.disabled = false);
+            btnEdit.style.display = 'none';
+            btnSave.style.display = 'inline-block';
+        };
+
+        btnDel.onclick = () => {
+            row.remove();
+        };
+
+        const truongSelect = row.querySelector('.truong');
+        const nganhSelect = row.querySelector('.nganh');
+        const tohopSelect = row.querySelector('.tohop');
+
+        truongSelect.innerHTML = "<option disabled selected>--Chọn trường--</option>";
+          const uniqueTruongs = [...new Set(nganhData.map(n => n.TenTruong))];
+          uniqueTruongs.forEach(tr => {
+              const opt = document.createElement("option");
+              opt.value = tr;
+              opt.textContent = tr;
+              truongSelect.appendChild(opt);
+          });
+
+        truongSelect.addEventListener("change", function () {
+            const tenTruong = this.value;
+            const filteredNganh = nganhData.filter(n => n.TenTruong === tenTruong);
+            
+            nganhSelect.innerHTML = "<option disabled selected>--Chọn ngành--</option>";
+            const uniqueNganhs = [...new Set(filteredNganh.map(n => n.Ten_Nganh))];
+            uniqueNganhs.forEach(tn => {
+                const opt = document.createElement("option");
+                opt.value = tn;
+                opt.textContent = tn;
+                nganhSelect.appendChild(opt);
+            });
+
+            tohopSelect.innerHTML = "<option disabled selected>--Chọn tổ hợp--</option>";
+        });
+
+        nganhSelect.addEventListener("change", function () {
+            const tenNganh = this.value;
+            const truong = truongSelect.value;
+
+            // Tìm đúng ngành theo tên ngành và tên trường
+            const nganh = nganhData.find(n => n.Ten_Nganh === tenNganh && n.TenTruong === truong);
+
+            // Reset tổ hợp
+            tohopSelect.innerHTML = "<option disabled selected>--Chọn tổ hợp--</option>";
+
+            if (nganh && nganh.Ma_To_Hop) {
+                // Tách danh sách mã tổ hợp
+                const maToHopArray = nganh.Ma_To_Hop.split(';').map(ma => ma.trim().toUpperCase());
+
+                // Lọc tổ hợp có mã trùng khớp
+                const filteredTohop = tohopData.filter(tohop => maToHopArray.includes(tohop.Ma_To_Hop.toUpperCase()));
+
+                // Thêm option hiển thị Tên tổ hợp
+                filteredTohop.forEach(tohop => {
+                    const opt = document.createElement("option");
+                    opt.value = tohop.Ma_To_Hop;
+                    opt.textContent = `${tohop.Ma_To_Hop} (${tohop.Ten_To_Hop})`;
+                    tohopSelect.appendChild(opt);
+                });
+
+                tohopSelect.disabled = false;
+            } else {
+                tohopSelect.disabled = true;
+            }
+        });
+
+
+
+        document.getElementById('industry-list').appendChild(row);
+    }
+
+    // Load dữ liệu rồi thêm dòng đầu tiên
+    fetchData();
+
+    // Mỗi lần bấm nút "Thêm nguyện vọng" chỉ gọi addRow() một lần thôi
+    document.getElementById('add-btn').addEventListener('click', addRow);
 });
-
-
-// Called when a 'Trường' (school) is selected; fetches Ngành (majors)
-function getCities(MaTruong) {
-  if (MaTruong) {
-    let citiesDropDown = document.getElementsByName('cities')[0]; // 'Ngành' dropdown
-    let toHopDropDown = document.getElementsByName('Tohop')[0];  // 'Tổ hợp môn' dropdown
-
-    if (MaTruong.trim() === "") {
-      citiesDropDown.disabled = true;
-      citiesDropDown.innerHTML = '<option value="">Chọn ngành</option>';
-      toHopDropDown.disabled = true;
-      toHopDropDown.innerHTML = '<option value="">Chọn tổ hợp</option>';
-      return;
-    }
-
-    fetch(`functions.php?MaTruong=${MaTruong}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        return response.json();
-      })
-      .then(cities => {
-        let out = '<option value="">Chọn ngành</option>';
-        for (let city of cities) {
-          out += `<option value="${city['MaNganh']}">${city['Ten_Nganh']}</option>`;
-        }
-        citiesDropDown.innerHTML = out;
-        citiesDropDown.disabled = false;
-
-        // Reset "Tổ hợp môn"
-        toHopDropDown.innerHTML = '<option value="">Chọn tổ hợp</option>';
-        toHopDropDown.disabled = true;
-      })
-      .catch(error => console.error('Fetch error:', error));
-  }
-}
-
-// Called when a 'Ngành' (major) is selected; fetches Tổ hợp môn (subject combos)
-function getToHop(MaNganh) {
-  if (MaNganh) {
-    let toHopDropDown = document.getElementsByName('Tohop')[0];
-
-    if (MaNganh.trim() === "") {
-      toHopDropDown.disabled = true;
-      toHopDropDown.innerHTML = '<option value="">Chọn tổ hợp</option>';
-      return;
-    }
-
-    fetch(`functions.php?MaNganh=${MaNganh}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        return response.json();
-      })
-      .then(tohops => {
-        let out = '<option value="">Chọn tổ hợp</option>';
-        for (let tohop of tohops) {
-          out += `<option value="${tohop['MaNganh']}">${tohop['Ma_To_Hop']}</option>`;
-        }
-        toHopDropDown.innerHTML = out;
-        toHopDropDown.disabled = false;
-      })
-      .catch(error => console.error('Fetch error:', error));
-  }
-}
