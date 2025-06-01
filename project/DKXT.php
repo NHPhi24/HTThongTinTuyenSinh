@@ -1,5 +1,4 @@
 <?php
-include "functions.php";
 if (session_start() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -79,11 +78,12 @@ if (session_start() === PHP_SESSION_NONE) {
                                 <i class="fa fa-plus"></i> Thêm nguyện vọng
                             </button>
                             <!-- Nút lưu tất cả nguyện vọng -->
-                            <button id="save-all-btn" class="btn" type="submit" name="save_all">
+                            <!-- <button id="save-all-btn" class="btn" type="submit" name="save_all">
                                 <i class="fa fa-save"></i> Lưu
-                            </button>
+                            </button> -->
+                            <input type="submit" class="btn" id="save-all-btn" name="save_all" value="Lưu toàn bộ">
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
 
@@ -91,7 +91,7 @@ if (session_start() === PHP_SESSION_NONE) {
             <template id="row-template">
                 <div class="industry-row">
                     <!-- Thứ tự -->
-                    <select name="STT_NV[]" class="nv">
+                    <select name="STT_NV" class="nv">
                         <?php for ($i = 1; $i <= 30; $i++): ?>
                         <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>">
                             <?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>
@@ -100,80 +100,33 @@ if (session_start() === PHP_SESSION_NONE) {
                     </select>
 
                     <!-- Trường -->
-                    <select name="Truongs[]" class="truong">
+                    <select name="Truongs" class="truong">
 
                     </select>
 
                     <!-- Ngành -->
-                    <select name="Nganhs[]" class="nganh">
+                    <select name="Nganhs" class="nganh">
                         <option disabled selected>--Chọn ngành--</option>
                     </select>
 
 
                     <!-- Tổ hợp môn -->
-                    <select name="ToHop[]" class="tohop">
+                    <select name="ToHop" class="tohop">
                         <option disabled selected>--Chọn tổ hợp--</option>
                     </select>
 
                     <!-- Nút CRUD -->
                     <div class="crud">
-                        <button class="btn btn-save" name="add_dkxt" type="button"><i
-                                class="fa-solid fa-check"></i></button>
-                        <button class="btn btn-set" name="set_dkxt" style="display:none;" type="button"><i
-                                class="fa-solid fa-gear"></i></button>
-                        <button class="btn btn-del" name="del_dkxt" type="button"><i
-                                class="fa-solid fa-xmark"></i></button>
-
+                        <input class="btn btn-save" type="submit" value="Lưu" name="add_dkxt">
+                        <input class="btn btn-set" type="submit" value="Sửa" name="set_dkxt">
+                        <input class="btn btn-del" type="submit" value="Xóa" name="del_dkxt">
                     </div>
                 </div>
             </template>
-            <div class="content-r">
-                <div class="login">
-                    <h1 class="title">Đăng nhập</h1>
-                    <form action="" method="get">
-                        <?php
-                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                            echo '<div class="account">
-                                        <span> Tài khoản: </span>
-                                        <label>' . $_SESSION['UserID'] . '</label>
-                                    </div>
-                                    <div class="account">
-                                        <span>Họ và tên: </span>
-                                        <label>' . $_SESSION['Name'] . '</label>
-                                    </div>
-                                    
-                                ';
-                        } else {
-                            echo '<div class="account">
-                                        <span> Tài khoản: </span>
-                                        <label> chưa có thông tin</label>
-                                    </div>
-                                    <div class="account">
-                                        <span>Họ và tên: </span>
-                                        <label> chưa có thông tin</label>
-                                    </div>
-                            ';
-                        }
-                        ?>
-                        <button class="btn">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                            <a href="<?= ROOT_URL ?>auth/logout.php">
-                                Đăng xuất
-                            </a>
-                        </button>
-                        <a href="">Đổi mật khẩu</a>
 
-                    </form>
-                </div>
-                <div class="feature">
-                    <h1 class="title">Tính năng</h1>
-                    <ul>
-                        <li><a href="">Thông báo từ ban quản trị</a></li>
-                        <li><a href="">Chương trình đào tạo</a></li>
-                        <li><a href="<?= ROOT_URL ?>DKXT.php">Đăng ký tuyển sinh</a></li>
-                        <li><a href="<?= ROOT_URL ?>information.php">Xem thông tin hồ sơ</a></li>
-                    </ul>
-                </div>
+
+            <div class="content-r">
+                <?php include("layout/feature.php"); ?>
             </div>
         </div>
         <?php

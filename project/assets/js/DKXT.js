@@ -23,17 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const btnEdit = row.querySelector('.btn-set');
         const btnDel = row.querySelector('.btn-del');
 
-        btnSave.onclick = () => {
-            selects.forEach(s => s.disabled = true);
-            btnSave.style.display = 'none';
-            btnEdit.style.display = 'inline-block';
-        };
+        // btnSave.onclick = () => {
+        //     selects.forEach(s => s.disabled = true);
+        //     btnSave.style.display = 'none';
+        //     btnEdit.style.display = 'inline-block';
+        // };
 
-        btnEdit.onclick = () => {
-            selects.forEach(s => s.disabled = false);
-            btnEdit.style.display = 'none';
-            btnSave.style.display = 'inline-block';
-        };
+        // btnEdit.onclick = () => {
+        //     selects.forEach(s => s.disabled = false);
+        //     btnEdit.style.display = 'none';
+        //     btnSave.style.display = 'inline-block';
+        // };
 
         btnDel.onclick = () => {
             row.remove();

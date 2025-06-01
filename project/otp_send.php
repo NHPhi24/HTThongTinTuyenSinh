@@ -20,12 +20,12 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'duyquynguyen2003@gmail.com';         
-    $mail->Password = 'zdnc vpzi izqt ugfs';  // ⚠️ Không nên công khai mật khẩu thật
+    $mail->Username = 'nguyenphi24032003@gmail.com';
+    $mail->Password = 'ldsr vrvw kaxl zibx';  // ⚠️ Không nên công khai mật khẩu thật
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
-    $mail->setFrom('duyquynguyen2003@gmail.com', 'Hệ thống xác thực');
+    $mail->setFrom('nguyenphi24032003@gmail.com', 'Hệ thống xác thực');
     $mail->addAddress($email);
 
     $otp = rand(100000, 999999);
@@ -39,8 +39,6 @@ try {
 
     header("Location: otp_verify.php");
     exit();
-
 } catch (Exception $e) {
     echo 'Gửi mail thất bại. Lỗi: ' . $mail->ErrorInfo;
 }
-?>
