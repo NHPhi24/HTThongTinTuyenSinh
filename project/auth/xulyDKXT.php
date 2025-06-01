@@ -6,7 +6,7 @@ if (!$conn) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Đã bỏ dòng debug để có thể lưu dữ liệu
+    // Get the user ID from the session
     $cccd = $_SESSION['UserID'];
 
     // Check which button was pressed
@@ -59,18 +59,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Handle saving all entries
         if (isset($_POST['STT_NV']) && is_array($_POST['STT_NV'])) {
             foreach ($_POST['STT_NV'] as $index => $stt_nv) {
-                $truong = $_POST['Truongs'][$index];
-                $nganh = $_POST['Nganhs'][$index];
-                $tohop = $_POST['ToHop'][$index];
-                echo $truong;
-                echo $nganh;
-                echo $tohop;
-                // Insert new entries
-                $sql = "INSERT INTO dkxt (CCCD, TenTruong, Ten_Nganh, ToHop, NV) 
-                VALUES ('$cccd', '$truong', '$nganh', '$tohop', '$stt_nv')";
-                $result = mysqli_query($conn, $sql);
-                if (!$result) {
-                    echo "Có lỗi xảy ra: " . mysqli_error($conn);
+                // Nếu không có NV_ID thì là mới
+                if (empty($_POST['NV_ID'][$index])) {
+                    $truong = $_POST['Truongs'][$index];
+                    $nganh = $_POST['Nganhs'][$index];
+                    $tohop = $_POST['ToHop'][$index];
+                    // Kiểm tra tồn tại trước khi thêm
+                    $check_sql = "SELECT 1 FROM dkxt WHERE CCCD='$cccd' AND TenTruong='$truong' AND Ten_Nganh='$nganh' AND ToHop='$tohop' AND NV='$stt_nv'";
+                    $check_result = mysqli_query($conn, $check_sql);
+                    if (mysqli_num_rows($check_result) == 0) {
+                        // Insert new entries nếu chưa tồn tại
+                        $sql = "INSERT INTO dkxt (CCCD, TenTruong, Ten_Nganh, ToHop, NV) 
+                        VALUES ('$cccd', '$truong', '$nganh', '$tohop', '$stt_nv')";
+                        $result = mysqli_query($conn, $sql);
+                        if (!$result) {
+                            echo "Có lỗi xảy ra: " . mysqli_error($conn);
+                        }
+                    }
                 }
             }
             echo "<script>alert('Thêm toàn bộ thành công!');
@@ -81,3 +86,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
