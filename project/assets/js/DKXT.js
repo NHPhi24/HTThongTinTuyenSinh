@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const truongSelect = row.querySelector('.truong');
         const nganhSelect = row.querySelector('.nganh');
         const tohopSelect = row.querySelector('.tohop');
+        const sttSelect = row.querySelector('.nv');
+
+        // Đảm bảo các select có name dạng mảng
+        truongSelect.name = "Truongs[]";
+        nganhSelect.name = "Nganhs[]";
+        tohopSelect.name = "ToHop[]";
+        sttSelect.name = "STT_NV[]";
 
         truongSelect.innerHTML = "<option disabled selected>--Chọn trường--</option>";
         const uniqueTruongs = [...new Set(nganhData.map(n => n.TenTruong))];

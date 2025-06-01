@@ -6,7 +6,7 @@ if (!$conn) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the user ID from the session
+    // Đã bỏ dòng debug để có thể lưu dữ liệu
     $cccd = $_SESSION['UserID'];
 
     // Check which button was pressed

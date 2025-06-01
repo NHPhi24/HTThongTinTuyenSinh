@@ -91,7 +91,7 @@ if (session_start() === PHP_SESSION_NONE) {
             <template id="row-template">
                 <div class="industry-row">
                     <!-- Thứ tự -->
-                    <select name="STT_NV" class="nv">
+                    <select name="STT_NV[]" class="nv">
                         <?php for ($i = 1; $i <= 30; $i++): ?>
                         <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>">
                             <?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>
@@ -100,26 +100,26 @@ if (session_start() === PHP_SESSION_NONE) {
                     </select>
 
                     <!-- Trường -->
-                    <select name="Truongs" class="truong">
+                    <select name="Truongs[]" class="truong">
 
                     </select>
 
                     <!-- Ngành -->
-                    <select name="Nganhs" class="nganh">
+                    <select name="Nganhs[]" class="nganh">
                         <option disabled selected>--Chọn ngành--</option>
                     </select>
 
 
                     <!-- Tổ hợp môn -->
-                    <select name="ToHop" class="tohop">
+                    <select name="ToHop[]" class="tohop">
                         <option disabled selected>--Chọn tổ hợp--</option>
                     </select>
 
                     <!-- Nút CRUD -->
                     <div class="crud">
-                        <input class="btn btn-save" type="submit" value="Lưu" name="add_dkxt">
-                        <input class="btn btn-set" type="submit" value="Sửa" name="set_dkxt">
-                        <input class="btn btn-del" type="submit" value="Xóa" name="del_dkxt">
+                        <input class="btn btn-save" type="button" value="Lưu" name="add_dkxt">
+                        <input class="btn btn-set" type="button" value="Sửa" name="set_dkxt">
+                        <input class="btn btn-del" type="button" value="Xóa" name="del_dkxt">
                     </div>
                 </div>
             </template>
