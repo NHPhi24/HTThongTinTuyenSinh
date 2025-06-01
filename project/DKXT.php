@@ -2,6 +2,38 @@
 if (session_start() === PHP_SESSION_NONE) {
     session_start();
 }
+$conn = new mysqli('localhost', 'root', '', 'htts');
+$cccd = $_SESSION['UserID'];
+$sql = "SELECT * FROM dkxt WHERE CCCD = '$cccd' ORDER BY NV ASC";
+$result = mysqli_query($conn, $sql);
+$nguyenvongList = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $nguyenvongList[] = $row;
+}
+
+// Lấy danh sách trường
+$truongList = [];
+$resTruong = mysqli_query($conn, "SELECT DISTINCT TenTruong FROM truong");
+while ($row = mysqli_fetch_assoc($resTruong)) {
+    $truongList[] = $row['TenTruong'];
+}
+
+// Lấy danh sách ngành
+$nganhList = [];
+$resNganh = mysqli_query($conn, "SELECT DISTINCT Ten_Nganh FROM nganhhoc");
+while ($row = mysqli_fetch_assoc($resNganh)) {
+    $nganhList[] = $row['Ten_Nganh'];
+}
+
+// Lấy danh sách tổ hợp môn (cả mã và tên)
+$tohopList = [];
+$resToHop = mysqli_query($conn, "SELECT DISTINCT Ma_To_Hop, Ten_To_Hop FROM tohop");
+while ($row = mysqli_fetch_assoc($resToHop)) {
+    $tohopList[] = [
+        'MaToHop' => $row['Ma_To_Hop'],
+        'TenToHop' => $row['Ten_To_Hop']
+    ];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +103,56 @@ if (session_start() === PHP_SESSION_NONE) {
                             </div>
 
                             <!-- Danh sách nguyện vọng -->
-                            <div id="industry-list" class="industry-list"></div>
+                            <div id="industry-list" class="industry-list">
+                                <?php foreach ($nguyenvongList as $index => $nv): ?>
+                                <div class="industry-row">
+                                    <!-- Thứ tự -->
+                                    <select name="STT_NV[]" class="nv">
+                                        <?php for ($i = 1; $i <= 30; $i++): ?>
+                                        <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>"
+                                            <?= $nv['NV'] == $i ? 'selected' : '' ?>>
+                                            <?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>
+                                        </option>
+                                        <?php endfor; ?>
+                                    </select>
+
+                                    <!-- Trường -->
+                                    <select name="Truongs[]" class="truong">
+                                        <?php foreach ($truongList as $truong): ?>
+                                        <option value="<?= $truong ?>" <?= $nv['TenTruong'] == $truong ? 'selected' : '' ?>>
+                                            <?= $truong ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    <!-- Ngành -->
+                                    <select name="Nganhs[]" class="nganh">
+                                        <?php foreach ($nganhList as $nganh): ?>
+                                        <option value="<?= $nganh ?>" <?= $nv['Ten_Nganh'] == $nganh ? 'selected' : '' ?>>
+                                            <?= $nganh ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+
+
+                                    <!-- Tổ hợp môn -->
+                                    <select name="ToHop[]" class="tohop">
+                                        <?php foreach ($tohopList as $tohop): ?>
+                                        <option value="<?= $tohop['MaToHop'] ?>" <?= $nv['ToHop'] == $tohop['MaToHop'] ? 'selected' : '' ?>>
+                                            <?= $tohop['TenToHop'] ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    <!-- Nút CRUD -->
+                                    <div class="crud">
+                                        <input class="btn btn-save" type="button" value="Lưu" name="add_dkxt">
+                                        <input class="btn btn-set" type="button" value="Sửa" name="set_dkxt">
+                                        <input class="btn btn-del" type="button" value="Xóa" name="del_dkxt">
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
 
                             <!-- Nút thêm nguyện vọng -->
                             <button id="add-btn" class="btn" type="button">
