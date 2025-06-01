@@ -13,25 +13,25 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 // Lấy danh sách trường
 $truongList = [];
-$resTruong = mysqli_query($conn, "SELECT DISTINCT TenTruong FROM truong");
+$resTruong = mysqli_query($conn, "SELECT DISTINCT * FROM dkxt");
 while ($row = mysqli_fetch_assoc($resTruong)) {
     $truongList[] = $row['TenTruong'];
 }
 
 // Lấy danh sách ngành
 $nganhList = [];
-$resNganh = mysqli_query($conn, "SELECT DISTINCT Ten_Nganh FROM nganhhoc");
+$resNganh = mysqli_query($conn, "SELECT DISTINCT * FROM dkxt");
 while ($row = mysqli_fetch_assoc($resNganh)) {
     $nganhList[] = $row['Ten_Nganh'];
 }
 
 // Lấy danh sách tổ hợp môn (cả mã và tên)
 $tohopList = [];
-$resToHop = mysqli_query($conn, "SELECT DISTINCT Ma_To_Hop, Ten_To_Hop FROM tohop");
+$resToHop = mysqli_query($conn, "SELECT DISTINCT * FROM tohop");
 while ($row = mysqli_fetch_assoc($resToHop)) {
     $tohopList[] = [
         'MaToHop' => $row['Ma_To_Hop'],
-        'TenToHop' => $row['Ten_To_Hop']
+        'TenToHop' => $row['Ten_To_Hop'],
     ];
 }
 ?>
@@ -119,7 +119,8 @@ while ($row = mysqli_fetch_assoc($resToHop)) {
                                     <!-- Trường -->
                                     <select name="Truongs[]" class="truong">
                                         <?php foreach ($truongList as $truong): ?>
-                                        <option value="<?= $truong ?>" <?= $nv['TenTruong'] == $truong ? 'selected' : '' ?>>
+                                        <option value="<?= $truong ?>"
+                                            <?= $nv['TenTruong'] == $truong ? 'selected' : '' ?>>
                                             <?= $truong ?>
                                         </option>
                                         <?php endforeach; ?>
@@ -128,7 +129,8 @@ while ($row = mysqli_fetch_assoc($resToHop)) {
                                     <!-- Ngành -->
                                     <select name="Nganhs[]" class="nganh">
                                         <?php foreach ($nganhList as $nganh): ?>
-                                        <option value="<?= $nganh ?>" <?= $nv['Ten_Nganh'] == $nganh ? 'selected' : '' ?>>
+                                        <option value="<?= $nganh ?>"
+                                            <?= $nv['Ten_Nganh'] == $nganh ? 'selected' : '' ?>>
                                             <?= $nganh ?>
                                         </option>
                                         <?php endforeach; ?>
@@ -138,8 +140,9 @@ while ($row = mysqli_fetch_assoc($resToHop)) {
                                     <!-- Tổ hợp môn -->
                                     <select name="ToHop[]" class="tohop">
                                         <?php foreach ($tohopList as $tohop): ?>
-                                        <option value="<?= $tohop['MaToHop'] ?>" <?= $nv['ToHop'] == $tohop['MaToHop'] ? 'selected' : '' ?>>
-                                            <?= $tohop['TenToHop'] ?>
+                                        <option value="<?= $tohop['MaToHop'] ?>"
+                                            <?= $nv['ToHop'] == $tohop['MaToHop'] ? 'selected' : '' ?>>
+                                            <?= $tohop['MaToHop'] . ' (' . $tohop['TenToHop'] . ')' ?>
                                         </option>
                                         <?php endforeach; ?>
                                     </select>
