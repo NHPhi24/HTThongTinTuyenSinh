@@ -106,6 +106,9 @@ while ($row = mysqli_fetch_assoc($resToHop)) {
                             <div id="industry-list" class="industry-list">
                                 <?php foreach ($nguyenvongList as $index => $nv): ?>
                                 <div class="industry-row">
+                                    <input type="hidden" name="NV_ID[]"
+                                        value="<?= isset($nv['id']) ? $nv['id'] : '' ?>">
+
                                     <!-- Thứ tự -->
                                     <select name="STT_NV[]" class="nv">
                                         <?php for ($i = 1; $i <= 30; $i++): ?>
@@ -134,6 +137,8 @@ while ($row = mysqli_fetch_assoc($resToHop)) {
                                             <?= $nganh ?>
                                         </option>
                                         <?php endforeach; ?>
+                                        <option value="<?= $nv['Ten_Nganh'] ?>" selected><?= $nv['Ten_Nganh'] ?>
+                                        </option>
                                     </select>
 
 
